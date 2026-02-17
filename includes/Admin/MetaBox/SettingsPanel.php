@@ -55,6 +55,8 @@ final class SettingsPanel {
 			<label for="lw-settings-min-height-mobile"><?php esc_html_e( 'Min Height Mobile (px)', 'lw-slider' ); ?></label><br>
 			<input type="number" id="lw-settings-min-height-mobile" name="lw_slider_settings[min_height_mobile]" value="<?php echo esc_attr( (string) $s['min_height_mobile'] ); ?>" min="100" max="1200" class="small-text">
 		</p>
+		<p><strong><?php esc_html_e( 'Visibility', 'lw-slider' ); ?></strong></p>
+		<?php self::render_checkbox( 'hide_on_mobile', __( 'Hide on mobile', 'lw-slider' ), $s ); ?>
 		<?php
 	}
 

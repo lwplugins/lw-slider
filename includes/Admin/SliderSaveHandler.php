@@ -154,6 +154,7 @@ final class SliderSaveHandler {
 			'swipe'              => ! empty( $raw['swipe'] ),
 			'keyboard'           => ! empty( $raw['keyboard'] ),
 			'pause_on_hover'     => ! empty( $raw['pause_on_hover'] ),
+			'hide_on_mobile'     => ! empty( $raw['hide_on_mobile'] ),
 		);
 
 		update_post_meta( $post_id, '_lw_slider_settings', $settings );

@@ -132,6 +132,10 @@ final class Renderer {
 			$classes[] = 'lw-slider--no-arrows-mobile';
 		}
 
+		if ( ! empty( $s['hide_on_mobile'] ) ) {
+			$classes[] = 'lw-slider--hide-mobile';
+		}
+
 		if ( ! empty( $s['custom_class'] ) ) {
 			$classes[] = sanitize_html_class( $s['custom_class'] );
 		}

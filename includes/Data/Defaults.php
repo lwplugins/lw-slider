@@ -63,6 +63,7 @@ final class Defaults {
 			'swipe'              => true,
 			'keyboard'           => true,
 			'pause_on_hover'     => false,
+			'hide_on_mobile'     => false,
 		);
 	}
 

@@ -112,6 +112,13 @@
 	transform: translateY(-1px);
 }
 
+/* Hide slider on mobile */
+@media (max-width: 768px) {
+	.lw-slider--hide-mobile {
+		display: none !important;
+	}
+}
+
 /* Hide arrows on mobile */
 @media (max-width: 768px) {
 	.lw-slider--no-arrows-mobile .splide__arrows {
