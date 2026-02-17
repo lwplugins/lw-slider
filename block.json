@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lw-slider/slider",
+	"version": "1.0.0",
+	"title": "LW Slider",
+	"category": "media",
+	"icon": "images-alt2",
+	"description": "Display a slider from LW Slider.",
+	"keywords": [ "slider", "carousel", "slideshow" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"attributes": {
+		"sliderId": {
+			"type": "number",
+			"default": 0
+		},
+		"overrideAutoplay": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideTransition": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideDots": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideArrows": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideLoop": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideMinHeight": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "lw-slider",
+	"editorScript": "file:./assets/js/block.js",
+	"editorStyle": "file:./assets/css/block-editor.css"
+}

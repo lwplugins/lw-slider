@@ -1,0 +1,140 @@
+/* LW Slider Admin Styles */
+
+/* Slide card container */
+.lw-slides-sortable {
+	margin: 0;
+	padding: 0;
+}
+
+/* Single slide card */
+.lw-slide-card {
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	transition: border-color 0.2s;
+}
+
+.lw-slide-card:hover {
+	border-color: #e91e63;
+}
+
+.lw-slide-card.lw-slide-inactive {
+	opacity: 0.6;
+}
+
+/* Slide header (always visible) */
+.lw-slide-header {
+	display: flex;
+	align-items: center;
+	padding: 10px 12px;
+	gap: 10px;
+	cursor: default;
+}
+
+/* Drag handle */
+.lw-slide-drag {
+	cursor: grab;
+	color: #999;
+	flex-shrink: 0;
+}
+
+.lw-slide-drag:hover {
+	color: #e91e63;
+}
+
+/* Thumbnail */
+.lw-slide-thumb {
+	width: 40px;
+	height: 30px;
+	object-fit: cover;
+	border-radius: 3px;
+	flex-shrink: 0;
+}
+
+/* Title */
+.lw-slide-title {
+	flex: 1;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* Active toggle */
+.lw-slide-active-toggle {
+	flex-shrink: 0;
+	font-size: 12px;
+	color: #666;
+}
+
+/* Toggle/Remove/Duplicate buttons */
+.lw-slide-duplicate,
+.lw-slide-toggle,
+.lw-slide-remove {
+	flex-shrink: 0;
+	color: #999;
+	cursor: pointer;
+	padding: 0;
+	border: none;
+	background: none;
+}
+
+.lw-slide-duplicate:hover,
+.lw-slide-toggle:hover {
+	color: #e91e63;
+}
+
+.lw-slide-remove:hover {
+	color: #d63638;
+}
+
+/* Slide body (expanded) */
+.lw-slide-body {
+	padding: 0 15px 15px;
+	border-top: 1px solid #f0f0f1;
+}
+
+/* Slide sections */
+.lw-slide-section {
+	border: 1px solid #f0f0f1;
+	border-radius: 4px;
+	padding: 10px 15px;
+	margin: 10px 0;
+}
+
+.lw-slide-section legend {
+	font-weight: 600;
+	padding: 0 5px;
+	color: #e91e63;
+}
+
+/* Image preview */
+.lw-bg-image-preview img {
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+
+/* Sortable placeholder */
+.lw-slides-sortable .ui-sortable-placeholder {
+	border: 2px dashed #e91e63;
+	background: #fce4ec;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	visibility: visible !important;
+	min-height: 52px;
+}
+
+.lw-slides-sortable .ui-sortable-helper {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Add slide button */
+#lw-slider-add-slide {
+	margin-top: 5px;
+}
+
+/* Opacity range */
+.lw-opacity-range {
+	width: 100%;
+}

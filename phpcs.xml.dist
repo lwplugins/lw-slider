@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="LW Slider">
+	<description>Coding standards for LW Slider plugin.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/assets/</exclude-pattern>
+
+	<arg value="sp"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<rule ref="WordPress">
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="lw-slider"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="lw_slider"/>
+				<element value="LW_SLIDER"/>
+				<element value="LW_Slider"/>
+				<element value="LightweightPlugins"/>
+				<element value="lw_plugins"/>
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>
