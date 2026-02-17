@@ -3,7 +3,7 @@ Contributors: lwplugins
 Tags: slider, carousel, responsive, lightweight
 Requires at least: 6.0
 Tested up to: 6.7
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,12 @@ Use the shortcode `[lw_slider id="123"]` or the Gutenberg block.
 Splide.js — a lightweight, accessible slider library (~30KB).
 
 == Changelog ==
+
+= 1.0.1 =
+* Gutenberg block with slider selector and per-block override settings
+* Slides now fill full width and height even without link/content
+* Slide duplication support
+* Fixed Splide.js theme CSS loading
 
 = 1.0.0 =
 * Initial release
