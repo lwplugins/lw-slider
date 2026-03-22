@@ -19,6 +19,7 @@ use LightweightPlugins\Slider\Block\SliderBlock;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Shortcode;
 use LightweightPlugins\Slider\PostType\SliderPostType;
+use LightweightPlugins\Slider\SiteManager\Integration;
 
 /**
  * Main plugin class.
@@ -33,6 +34,7 @@ final class Plugin {
 		$this->init_post_type();
 		$this->init_admin();
 		$this->init_frontend();
+		$this->init_site_manager();
 	}
 
 	/**
@@ -84,6 +86,15 @@ final class Plugin {
 		new Shortcode();
 		new Assets();
 		new SliderBlock();
+	}
+
+	/**
+	 * Initialize Site Manager integration.
+	 *
+	 * @return void
+	 */
+	private function init_site_manager(): void {
+		Integration::init();
 	}
 
 	/**
