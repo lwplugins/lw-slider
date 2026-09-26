@@ -39,6 +39,8 @@
 	height: 100%;
 	margin: 0;
 	object-fit: cover;
+	/* Clicks go through to the full-slide link (the image paints above it). */
+	pointer-events: none;
 }
 
 /* Pause / play button of an autoplaying slider */
@@ -93,8 +95,10 @@
 	align-items: center;
 }
 
-/* Full slide link */
+/* Full slide link: positioned above the image and the overlay */
 .lw-slider__link {
+	position: relative;
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	justify-content: center;
