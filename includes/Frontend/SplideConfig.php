@@ -83,8 +83,21 @@ final class SplideConfig {
 			'carousel'   => __( 'carousel', 'lw-slider' ),
 			'slide'      => __( 'slide', 'lw-slider' ),
 			'select'     => __( 'Select a slide to show', 'lw-slider' ),
-			/* translators: 1: slide number, 2: number of slides (Splide fills them in). */
-			'slideLabel' => __( '%1$s of %2$s', 'lw-slider' ),
+			'slideLabel' => self::slide_label(),
 		];
+	}
+
+	/**
+	 * The "slide 2 of 5" label in Splide's format. Splide replaces each
+	 * plain %s in turn and knows no numbered placeholders, so %1$s and
+	 * %2$s become %s (the numbers therefore keep their order).
+	 *
+	 * @return string
+	 */
+	public static function slide_label(): string {
+		/* translators: 1: slide number, 2: number of slides. Keep this order: the slider fills them in from left to right. */
+		$label = __( '%1$s of %2$s', 'lw-slider' );
+
+		return (string) preg_replace( '/%\d+\$s/', '%s', $label );
 	}
 }
