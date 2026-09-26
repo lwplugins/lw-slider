@@ -17,6 +17,7 @@ use LightweightPlugins\Slider\Admin\SliderSaveHandler;
 use LightweightPlugins\Slider\Block\SliderBlock;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Shortcode;
+use LightweightPlugins\Slider\PostType\SliderMeta;
 use LightweightPlugins\Slider\PostType\SliderPostType;
 use LightweightPlugins\Slider\SiteManager\Integration;
 
@@ -55,7 +56,8 @@ final class Plugin {
 	 * @return void
 	 */
 	private function init_post_type(): void {
-		add_action( 'init', array( SliderPostType::class, 'register' ) );
+		add_action( 'init', [ SliderPostType::class, 'register' ] );
+		add_action( 'init', [ SliderMeta::class, 'register' ] );
 	}
 
 	/**

@@ -60,7 +60,8 @@ final class SliderPostType {
 			'capability_type'    => 'post',
 			'has_archive'        => false,
 			'hierarchical'       => false,
-			'supports'           => array( 'title' ),
+			// custom-fields: the registered meta shows up in the REST API.
+			'supports'           => [ 'title', 'custom-fields' ],
 		);
 
 		register_post_type( self::POST_TYPE, $args );
