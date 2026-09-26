@@ -12,6 +12,7 @@ namespace LightweightPlugins\Slider\Block;
 use LightweightPlugins\Slider\Data\Defaults;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Renderer;
+use LightweightPlugins\Slider\Frontend\SliderVisibility;
 use LightweightPlugins\Slider\PostType\SliderPostType;
 
 /**
@@ -121,7 +122,7 @@ final class SliderBlock {
 	public function render( array $attributes ): string {
 		$slider_id = absint( $attributes['sliderId'] ?? 0 );
 
-		if ( ! $slider_id || 'publish' !== get_post_status( $slider_id ) ) {
+		if ( ! SliderVisibility::is_public( $slider_id ) ) {
 			return '';
 		}
 

@@ -18,7 +18,7 @@ final class Shortcode {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_shortcode( 'lw_slider', array( $this, 'render' ) );
+		add_shortcode( 'lw_slider', [ $this, 'render' ] );
 	}
 
 	/**
@@ -29,14 +29,14 @@ final class Shortcode {
 	 */
 	public function render( $atts ): string {
 		$atts = shortcode_atts(
-			array( 'id' => 0 ),
+			[ 'id' => 0 ],
 			$atts,
 			'lw_slider'
 		);
 
 		$id = absint( $atts['id'] );
 
-		if ( ! $id || 'publish' !== get_post_status( $id ) ) {
+		if ( ! SliderVisibility::is_public( $id ) ) {
 			return '';
 		}
 
