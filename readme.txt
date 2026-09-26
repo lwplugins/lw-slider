@@ -16,19 +16,18 @@ Create beautiful, fast, responsive sliders without the bloat.
 
 = Features =
 
-* Custom Post Type based slider management
-* Drag & drop slide ordering
-* Background image or color per slide
-* Content overlay with headline, subheadline, description
+* Slider manager under LW Plugins > Sliders: list, trash, duplicate, and an editor with Slides, Settings and Embed sections
+* Drag & drop slide ordering, with Move up / Move down buttons for keyboard users
+* Background image (from the media library, with focus point and alt text) or color per slide
+* Headline, subheadline, description, optional color overlay
 * Call-to-action: full slide link or button
-* Splide.js powered — lightweight and accessible
+* Splide.js powered, lightweight and accessible: pause/play button for autoplay, arrow keys only while the slider has focus, translated control labels
+* Responsive images (srcset, lazy loading after the first slide)
 * Shortcode: `[lw_slider id="123"]`
-* Gutenberg block
-* Responsive: separate mobile/desktop min-height
-* Autoplay, loop, fade/slide transitions
-* Keyboard navigation and swipe support
-* Accessibility: prefers-reduced-motion support
-* Duplicate slider with one click
+* Gutenberg block with per-block overrides, wide/full alignment
+* Separate desktop and mobile minimum height
+* Autoplay, loop, fade/slide transitions, swipe
+* prefers-reduced-motion support
 * No bloat, no upsell, no tracking
 
 Part of [LW Plugins](https://lwplugins.com) - lightweight WordPress plugins.
@@ -37,7 +36,7 @@ Part of [LW Plugins](https://lwplugins.com) - lightweight WordPress plugins.
 
 1. Upload to `/wp-content/plugins/lw-slider/`
 2. Activate the plugin
-3. Go to LW Plugins → Sliders → Add New
+3. Go to LW Plugins > Sliders and click New slider
 
 Or: `composer require lwplugins/lw-slider`
 
@@ -46,6 +45,14 @@ Or: `composer require lwplugins/lw-slider`
 = How do I display a slider? =
 
 Use the shortcode `[lw_slider id="123"]` or the Gutenberg block.
+
+= Which screen width counts as mobile? =
+
+The mobile minimum height and "Hide on mobile" apply to screens up to 768 px wide. The heights are the CSS custom properties `--lw-slider-min-height` and `--lw-slider-min-height-mobile` on the slider element, so a theme can override them.
+
+= Why does my slider not show up? =
+
+Only published sliders without a password are shown. Check the slider's status under Settings.
 
 = What JavaScript library is used? =
 
