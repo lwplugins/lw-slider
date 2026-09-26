@@ -48,12 +48,15 @@ final class Renderer {
 
 		ob_start();
 
+		// The heights are custom properties that slider.css turns into
+		// min-height: an inline min-height would beat the mobile media query.
 		printf(
-			'<div class="%s splide" id="lw-slider-%s" data-lw-slider=\'%s\' style="min-height:%spx;">',
+			'<div class="%s splide" id="%s" data-lw-slider=\'%s\' style="--lw-slider-min-height:%dpx;--lw-slider-min-height-mobile:%dpx;">',
 			esc_attr( $css_class ),
-			esc_attr( (string) $post_id ),
+			esc_attr( self::element_id( $post_id ) ),
 			esc_attr( (string) wp_json_encode( $splide_data ) ),
-			esc_attr( (string) self::height( $settings['min_height_desktop'] ) )
+			(int) self::height( $settings['min_height_desktop'] ),
+			(int) self::height( $settings['min_height_mobile'] )
 		);
 
 		echo '<div class="splide__track"><ul class="splide__list">';
@@ -64,8 +67,6 @@ final class Renderer {
 		}
 
 		echo '</ul></div></div>';
-
-		self::render_responsive_style( $post_id, $settings );
 
 		return (string) ob_get_clean();
 	}
@@ -145,20 +146,24 @@ final class Renderer {
 	}
 
 	/**
-	 * Render responsive CSS for mobile min-height.
+	 * HTML id of a slider instance: lw-slider-{ID} for the first one on the
+	 * page (the id 1.0 printed, so custom CSS keeps working), a unique
+	 * suffixed id for every further copy of the same slider.
 	 *
-	 * @param int                  $post_id  Slider post ID.
-	 * @param array<string, mixed> $settings Slider settings.
-	 * @return void
+	 * @param int $post_id Slider ID.
+	 * @return string
 	 */
-	private static function render_responsive_style( int $post_id, array $settings ): void {
-		printf(
-			'<style>#lw-slider-%s{min-height:%spx}@media(max-width:768px){#lw-slider-%s{min-height:%spx}}</style>',
-			esc_attr( (string) $post_id ),
-			esc_attr( (string) self::height( $settings['min_height_desktop'] ) ),
-			esc_attr( (string) $post_id ),
-			esc_attr( (string) self::height( $settings['min_height_mobile'] ) )
-		);
+	private static function element_id( int $post_id ): string {
+		static $seen = [];
+
+		$base = 'lw-slider-' . $post_id;
+
+		if ( empty( $seen[ $post_id ] ) ) {
+			$seen[ $post_id ] = true;
+			return $base;
+		}
+
+		return wp_unique_id( $base . '-' );
 	}
 
 	/**

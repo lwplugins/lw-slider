@@ -160,15 +160,33 @@ final class RendererTest extends MonkeyTestCase {
 		$this->assertStringContainsString( 'background-color:#f0f0f0;', $html );
 		$this->assertStringNotContainsString( 'lw-slider__overlay', $html );
 		$this->assertStringContainsString( 'background-position:center center;', $html );
-		$this->assertStringContainsString( 'min-height:400px;', $html );
+		$this->assertStringContainsString( '--lw-slider-min-height:400px;', $html );
+		$this->assertStringContainsString( '--lw-slider-min-height-mobile:100px;', $html );
 		$this->assertStringContainsString( 'lw-align-center', $html );
 	}
 
 	public function test_min_height_is_clamped(): void {
 		$html = $this->render( [ [ 'active' => true ] ], [ 'min_height_desktop' => '9999', 'min_height_mobile' => '3' ] );
 
-		$this->assertStringContainsString( 'min-height:1200px', $html );
-		$this->assertStringContainsString( '{min-height:100px}', $html );
+		$this->assertStringContainsString( '--lw-slider-min-height:1200px;', $html );
+		$this->assertStringContainsString( '--lw-slider-min-height-mobile:100px;', $html );
+	}
+
+	public function test_no_inline_min_height_or_style_block_overrides_the_mobile_height(): void {
+		$html = $this->render( [ [ 'active' => true ] ] );
+
+		$this->assertDoesNotMatchRegularExpression( '/[;"]min-height:/', $html );
+		$this->assertStringNotContainsString( '<style', $html );
+	}
+
+	public function test_a_slider_shown_twice_gets_unique_ids(): void {
+		$this->meta[ 99 ][ SliderRepository::SLIDES_KEY ] = [ [ 'active' => true ] ];
+
+		$first  = Renderer::render( 99 );
+		$second = Renderer::render( 99 );
+
+		$this->assertStringContainsString( 'id="lw-slider-99"', $first );
+		$this->assertMatchesRegularExpression( '/id="lw-slider-99-\d+"/', $second );
 	}
 
 	public function test_new_tab_links_carry_a_valid_rel_attribute(): void {

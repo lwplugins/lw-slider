@@ -4,6 +4,14 @@
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	min-height: var(--lw-slider-min-height, 400px);
+}
+
+/* Mobile min-height (screens up to 768px): set per slider in its style attribute. */
+@media (max-width: 768px) {
+	.lw-slider {
+		min-height: var(--lw-slider-min-height-mobile, var(--lw-slider-min-height, 280px));
+	}
 }
 
 /* Pass min-height through the full Splide chain */

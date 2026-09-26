@@ -78,6 +78,10 @@ trait StubsWordPress {
 				'wp_slash'                => static fn( $value ) => $deep( $value, 'addslashes' ),
 				'wp_parse_args'           => static fn( $args, $defaults = [] ) => array_merge( (array) $defaults, (array) $args ),
 				'wp_json_encode'          => static fn( $data ) => json_encode( $data ),
+				'wp_unique_id'            => static function ( $prefix = '' ) {
+					static $counter = 0;
+					return $prefix . ( ++$counter );
+				},
 			]
 		);
 	}
