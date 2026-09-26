@@ -28,6 +28,48 @@
 	min-height: inherit;
 }
 
+/* Background image (an <img>, so it gets srcset, lazy loading and alt text) */
+.lw-slider .lw-slider__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	object-fit: cover;
+}
+
+/* Pause / play button of an autoplaying slider */
+.lw-slider__toggle {
+	position: absolute;
+	bottom: 0.5em;
+	left: 1em;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2em;
+	height: 2em;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.55);
+	color: #fff;
+	cursor: pointer;
+}
+
+.lw-slider__toggle:hover {
+	background: rgba(0, 0, 0, 0.75);
+}
+
+.lw-slider__toggle:focus-visible {
+	outline: 3px solid #fff;
+	outline-offset: 2px;
+	box-shadow: 0 0 0 5px #000;
+}
+
 /* Overlay */
 .lw-slider__overlay {
 	position: absolute;

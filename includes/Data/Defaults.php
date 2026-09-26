@@ -62,7 +62,7 @@ final class Defaults {
 			'custom_class'       => '',
 			'swipe'              => true,
 			'keyboard'           => true,
-			'pause_on_hover'     => false,
+			'pause_on_hover'     => true,
 			'hide_on_mobile'     => false,
 		);
 	}

@@ -31,7 +31,11 @@
 			}
 
 			if (prefersReducedMotion()) {
-				config.autoplay = false;
+				// 'pause': autoplay stays available (the pause/play button
+				// works) but never starts on its own.
+				if (config.autoplay) {
+					config.autoplay = 'pause';
+				}
 				config.speed = 0;
 				config.rewindSpeed = 0;
 			}

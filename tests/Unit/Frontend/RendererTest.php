@@ -29,6 +29,11 @@ final class RendererTest extends MonkeyTestCase {
 		$this->stub_wordpress();
 		$this->stub_meta_store();
 		Functions\when( 'wp_get_attachment_image_url' )->alias( static fn( $id ) => 'https://example.test/img-' . $id . '.jpg' );
+		Functions\when( 'wp_get_attachment_image' )->alias(
+			static fn( $id, $size, $icon, $attrs ) => '<img data-id="' . $id . '" data-attrs=\'' . json_encode( $attrs ) . '\'>'
+		);
+		Functions\when( 'get_post_field' )->justReturn( 'Home <b>hero</b>' );
+		Functions\when( 'wp_strip_all_tags' )->alias( static fn( $text ) => strip_tags( (string) $text ) );
 	}
 
 	/**
@@ -41,6 +46,8 @@ final class RendererTest extends MonkeyTestCase {
 	 */
 	private function render( array $slides, array $settings = [], array $overrides = [] ): string {
 		$this->meta[ self::ID ][ SliderRepository::SLIDES_KEY ] = $slides;
+
+		unset( $this->meta[ self::ID ][ SliderRepository::SETTINGS_KEY ] );
 
 		if ( [] !== $settings ) {
 			$this->meta[ self::ID ][ SliderRepository::SETTINGS_KEY ] = $settings;
@@ -117,17 +124,49 @@ final class RendererTest extends MonkeyTestCase {
 		$this->assertStringNotContainsString( 'lw-slider__link', $html );
 	}
 
-	public function test_an_image_slide_uses_the_full_size_background(): void {
-		$html = $this->render( [ [ 'active' => true, 'bg_image_id' => 7, 'bg_position' => 'left top' ] ] );
+	public function test_image_slides_print_an_img_with_alt_lazy_after_the_first(): void {
+		$html = $this->render(
+			[
+				[ 'active' => true, 'bg_image_id' => 7, 'bg_position' => 'left top', 'image_alt' => 'Beach' ],
+				[ 'active' => true, 'bg_image_id' => 8, 'bg_position' => 'center;x:y' ],
+			]
+		);
 
-		$this->assertStringContainsString( 'background-image:url(https://example.test/img-7.jpg)', $html );
-		$this->assertStringContainsString( 'background-position:left top;', $html );
+		$this->assertStringContainsString( '<img data-id="7" data-attrs=\'{"class":"lw-slider__image","sizes":"100vw","decoding":"async","style":"object-position:left top;","loading":false,"alt":"Beach"}\'>', $html );
+		$this->assertStringContainsString( '"style":"object-position:center center;","loading":"lazy"}', $html );
+		$this->assertStringNotContainsString( 'background-image', $html );
+	}
+
+	public function test_carousel_label_keyboard_and_translated_controls(): void {
+		$html = $this->render( [ [ 'active' => true ], [ 'active' => true ] ] );
+
+		$this->assertStringContainsString( '&quot;label&quot;:&quot;Home hero&quot;', $html );
+		$this->assertStringContainsString( '&quot;keyboard&quot;:&quot;focused&quot;', $html );
+		$this->assertStringContainsString( '&quot;play&quot;:&quot;Start autoplay&quot;', $html );
+	}
+
+	public function test_autoplay_adds_a_pause_button_and_pauses_on_hover_by_default(): void {
+		$html = $this->render( [ [ 'active' => true ], [ 'active' => true ] ], [ 'autoplay' => true ] );
+
+		$this->assertStringContainsString( '<button class="splide__toggle lw-slider__toggle" type="button" aria-label="Pause autoplay">', $html );
+		$this->assertStringContainsString( '&quot;pauseOnHover&quot;:true', $html );
+		$this->assertStringContainsString( '&quot;pauseOnFocus&quot;:true', $html );
+		$this->assertStringNotContainsString( 'splide__toggle', $this->render( [ [ 'active' => true ], [ 'active' => true ] ] ) );
+		$this->assertStringNotContainsString( 'splide__toggle', $this->render( [ [ 'active' => true ] ], [ 'autoplay' => true ] ) );
+	}
+
+	public function test_a_full_slide_link_without_text_is_named_by_the_alt_text(): void {
+		$html = $this->render( [ [ 'active' => true, 'link_url' => '/x', 'image_alt' => 'Sale' ], [ 'active' => true, 'link_url' => '/y' ] ] );
+
+		$this->assertStringContainsString( 'class="lw-slider__link" aria-label="Sale">', $html );
+		$this->assertStringContainsString( 'class="lw-slider__link" aria-label="Open the slide link">', $html );
 	}
 
 	public function test_a_full_slide_link_wraps_the_content(): void {
 		$html = $this->render( [ [ 'active' => true, 'link_url' => 'https://example.test/', 'headline' => 'H' ] ] );
 
 		$this->assertMatchesRegularExpression( '#<a href="https://example.test/" target="_self" class="lw-slider__link">.*H.*</a>#s', $html );
+		$this->assertStringNotContainsString( 'aria-label', $html );
 	}
 
 	public function test_stored_css_in_style_values_never_reaches_the_markup(): void {
@@ -159,7 +198,6 @@ final class RendererTest extends MonkeyTestCase {
 		$this->assertStringNotContainsString( 'onmouseover', $html );
 		$this->assertStringContainsString( 'background-color:#f0f0f0;', $html );
 		$this->assertStringNotContainsString( 'lw-slider__overlay', $html );
-		$this->assertStringContainsString( 'background-position:center center;', $html );
 		$this->assertStringContainsString( '--lw-slider-min-height:400px;', $html );
 		$this->assertStringContainsString( '--lw-slider-min-height-mobile:100px;', $html );
 		$this->assertStringContainsString( 'lw-align-center', $html );

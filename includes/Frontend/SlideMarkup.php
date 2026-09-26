@@ -22,24 +22,27 @@ final class SlideMarkup {
 	 *
 	 * @param array<string, mixed> $slide    Slide data.
 	 * @param array<string, mixed> $settings Slider settings.
+	 * @param int                  $index    Position among the shown slides.
 	 * @return void
 	 */
-	public static function render( array $slide, array $settings ): void {
+	public static function render( array $slide, array $settings, int $index = 0 ): void {
 		$style    = self::build_style( $slide );
 		$has_link = ! empty( $slide['link_url'] );
 		$is_full  = 'full_slide' === $slide['cta_mode'];
 		$target   = '_blank' === $slide['link_target'] ? $slide['link_target'] : '_self';
 
-		echo '<li class="splide__slide" style="' . esc_attr( $style ) . '">';
+		echo '<li class="splide__slide"' . ( '' !== $style ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>';
 
+		self::render_image( $slide, $index );
 		self::render_overlay( $slide );
 
 		if ( $has_link && $is_full ) {
 			printf(
-				'<a href="%s" target="%s"%s class="lw-slider__link">',
+				'<a href="%s" target="%s"%s class="lw-slider__link"%s>',
 				esc_url( $slide['link_url'] ),
 				esc_attr( $target ),
-				'_blank' === $target ? ' rel="noopener"' : ''
+				'_blank' === $target ? ' rel="noopener"' : '',
+				self::link_label( $slide ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in link_label().
 			);
 		}
 
@@ -65,21 +68,58 @@ final class SlideMarkup {
 			return 'background-color:' . SliderSanitizer::hex( $slide['bg_color'], (string) Defaults::slide()['bg_color'] ) . ';';
 		}
 
-		if ( empty( $slide['bg_image_id'] ) ) {
-			return '';
+		return '';
+	}
+
+	/**
+	 * The background image as an <img>: srcset/sizes from WordPress, the
+	 * slide's alt text (else the media library's), lazy loading for every
+	 * slide but the first. object-position keeps the chosen focus point.
+	 *
+	 * @param array<string, mixed> $slide Slide data.
+	 * @param int                  $index Position among the shown slides.
+	 * @return void
+	 */
+	private static function render_image( array $slide, int $index ): void {
+		$id = (int) $slide['bg_image_id'];
+
+		if ( 'image' !== $slide['bg_type'] || $id <= 0 ) {
+			return;
 		}
 
-		$url = wp_get_attachment_image_url( (int) $slide['bg_image_id'], 'full' );
+		$position = SliderSanitizer::choice( $slide['bg_position'], array_keys( Defaults::bg_positions() ), 'center center' );
+		$attrs    = [
+			'class'    => 'lw-slider__image',
+			'sizes'    => '100vw',
+			'decoding' => 'async',
+			'style'    => 'object-position:' . $position . ';',
+			'loading'  => 0 === $index ? false : 'lazy',
+		];
 
-		if ( ! $url ) {
-			return '';
+		if ( '' !== trim( (string) $slide['image_alt'] ) ) {
+			$attrs['alt'] = (string) $slide['image_alt'];
 		}
 
-		return sprintf(
-			'background-image:url(%s);background-size:cover;background-position:%s;',
-			esc_url( $url ),
-			SliderSanitizer::choice( $slide['bg_position'], array_keys( Defaults::bg_positions() ), 'center center' )
-		);
+		echo wp_get_attachment_image( $id, 'full', false, $attrs ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Core builds and escapes the tag.
+	}
+
+	/**
+	 * An aria-label for a full-slide link that has no text of its own.
+	 *
+	 * @param array<string, mixed> $slide Slide data.
+	 * @return string Attribute (with a leading space), or ''.
+	 */
+	private static function link_label( array $slide ): string {
+		foreach ( [ 'headline', 'subheadline', 'description' ] as $key ) {
+			if ( '' !== trim( (string) $slide[ $key ] ) ) {
+				return '';
+			}
+		}
+
+		$alt   = trim( (string) $slide['image_alt'] );
+		$label = '' !== $alt ? $alt : __( 'Open the slide link', 'lw-slider' );
+
+		return ' aria-label="' . esc_attr( $label ) . '"';
 	}
 
 	/**

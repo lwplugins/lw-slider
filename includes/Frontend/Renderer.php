@@ -43,7 +43,8 @@ final class Renderer {
 			$settings = array_merge( $settings, $overrides );
 		}
 
-		$splide_data = self::build_splide_config( $settings, count( $active_slides ) );
+		$count       = count( $active_slides );
+		$splide_data = SplideConfig::build( $settings, $count, self::label( $post_id ) );
 		$css_class   = self::build_css_class( $settings );
 
 		ob_start();
@@ -61,12 +62,19 @@ final class Renderer {
 
 		echo '<div class="splide__track"><ul class="splide__list">';
 
-		foreach ( $active_slides as $slide ) {
-			$slide = wp_parse_args( $slide, Defaults::slide() );
-			SlideMarkup::render( $slide, $settings );
+		self::prime_images( $active_slides );
+
+		foreach ( array_values( $active_slides ) as $index => $slide ) {
+			SlideMarkup::render( wp_parse_args( $slide, Defaults::slide() ), $settings, $index );
 		}
 
-		echo '</ul></div></div>';
+		echo '</ul></div>';
+
+		if ( SplideConfig::has_autoplay( $settings, $count ) ) {
+			self::render_toggle();
+		}
+
+		echo '</div>';
 
 		return (string) ob_get_clean();
 	}
@@ -88,33 +96,46 @@ final class Renderer {
 	}
 
 	/**
-	 * Build Splide.js configuration from settings.
+	 * Load every slide image's post and meta in one query each, instead of
+	 * two queries per image.
 	 *
-	 * @param array<string, mixed> $s            Settings.
-	 * @param int                  $slide_count  Number of active slides.
-	 * @return array<string, mixed>
+	 * @param array<int|string, array<string, mixed>> $slides Active slides.
+	 * @return void
 	 */
-	private static function build_splide_config( array $s, int $slide_count ): array {
-		$config = array(
-			'type'       => ! empty( $s['loop'] ) ? 'loop' : 'slide',
-			'pagination' => ! empty( $s['dots'] ) && $slide_count > 1,
-			'arrows'     => ! empty( $s['arrows'] ) && $slide_count > 1,
-			'drag'       => ! empty( $s['swipe'] ),
-			'keyboard'   => ! empty( $s['keyboard'] ) ? 'global' : false,
+	private static function prime_images( array $slides ): void {
+		$ids = array_filter( array_map( static fn( $slide ) => absint( $slide['bg_image_id'] ?? 0 ), $slides ) );
+
+		if ( [] !== $ids && function_exists( '_prime_post_caches' ) ) {
+			_prime_post_caches( array_values( array_unique( $ids ) ), false, true );
+		}
+	}
+
+	/**
+	 * Accessible name of the carousel: the slider title.
+	 *
+	 * @param int $post_id Slider ID.
+	 * @return string
+	 */
+	private static function label( int $post_id ): string {
+		$title = trim( wp_strip_all_tags( (string) get_post_field( 'post_title', $post_id, 'raw' ) ) );
+
+		return '' !== $title ? $title : __( 'Slider', 'lw-slider' );
+	}
+
+	/**
+	 * The pause/play button of an autoplaying slider (WCAG 2.2.2). Splide
+	 * finds it by its class, switches its icon and its label.
+	 *
+	 * @return void
+	 */
+	private static function render_toggle(): void {
+		printf(
+			'<button class="splide__toggle lw-slider__toggle" type="button" aria-label="%s">'
+			. '<span class="splide__toggle__play"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
+			. '<span class="splide__toggle__pause"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg></span>'
+			. '</button>',
+			esc_attr__( 'Pause autoplay', 'lw-slider' )
 		);
-
-		if ( 'fade' === $s['transition'] ) {
-			$config['type']   = 'fade';
-			$config['rewind'] = true;
-		}
-
-		if ( ! empty( $s['autoplay'] ) ) {
-			$config['autoplay']     = true;
-			$config['interval']     = (int) $s['autoplay_delay'];
-			$config['pauseOnHover'] = ! empty( $s['pause_on_hover'] );
-		}
-
-		return $config;
 	}
 
 	/**
