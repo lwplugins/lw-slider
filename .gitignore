@@ -4,3 +4,7 @@
 *.zip
 .phpcs-cache
 .DS_Store
+
+# Test / analysis caches
+.phpunit.cache/
+.phpunit.result.cache

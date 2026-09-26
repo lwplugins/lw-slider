@@ -3,8 +3,13 @@
 	<description>Coding standards for LW Slider plugin.</description>
 
 	<file>.</file>
-	<exclude-pattern>/vendor/</exclude-pattern>
-	<exclude-pattern>/assets/</exclude-pattern>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+	<exclude-pattern>/assets/*</exclude-pattern>
+	<exclude-pattern>/src/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
 
 	<arg value="sp"/>
 	<arg name="basepath" value="."/>
@@ -13,9 +18,21 @@
 	<arg name="parallel" value="8"/>
 
 	<rule ref="WordPress">
+		<!-- Allow short array syntax (the family standard; existing array() calls are converted only where code is touched). -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<!-- @phpstan-ignore directive comments end in an identifier, not punctuation. -->
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+		<!-- PSR-4 autoloading: use PascalCase filenames instead of class- prefix. -->
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 	</rule>
+
+	<!-- PHP Compatibility: the plugin supports PHP 8.0+. -->
+	<rule ref="PHPCompatibilityWP"/>
+	<config name="testVersion" value="8.0-"/>
+
+	<!-- WordPress minimum version. -->
+	<config name="minimum_wp_version" value="6.6"/>
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>

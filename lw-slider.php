@@ -59,4 +59,9 @@ function lw_slider(): Plugin {
 	return $instance;
 }
 
-add_action( 'plugins_loaded', __NAMESPACE__ . '\\lw_slider' );
+add_action(
+	'plugins_loaded',
+	static function (): void {
+		lw_slider();
+	}
+);
