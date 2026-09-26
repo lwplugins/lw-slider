@@ -129,4 +129,45 @@ final class RendererTest extends MonkeyTestCase {
 
 		$this->assertMatchesRegularExpression( '#<a href="https://example.test/" target="_self" class="lw-slider__link">.*H.*</a>#s', $html );
 	}
+
+	public function test_stored_css_in_style_values_never_reaches_the_markup(): void {
+		$html = $this->render(
+			[
+				[
+					'active'          => true,
+					'bg_type'         => 'color',
+					'bg_color'        => '#000;background:url(//evil)',
+					'overlay_color'   => 'red;position:fixed',
+					'overlay_opacity' => '50;x',
+				],
+				[
+					'active'      => true,
+					'bg_image_id' => 7,
+					'bg_position' => 'center;background:url(//evil)',
+				],
+			],
+			[
+				'min_height_desktop' => '400px;position:fixed',
+				'min_height_mobile'  => 'x}body{display:none',
+				'content_align_h'    => 'left" onmouseover="x',
+			]
+		);
+
+		$this->assertStringNotContainsString( 'evil', $html );
+		$this->assertStringNotContainsString( 'position:fixed', $html );
+		$this->assertStringNotContainsString( 'display:none', $html );
+		$this->assertStringNotContainsString( 'onmouseover', $html );
+		$this->assertStringContainsString( 'background-color:#f0f0f0;', $html );
+		$this->assertStringNotContainsString( 'lw-slider__overlay', $html );
+		$this->assertStringContainsString( 'background-position:center center;', $html );
+		$this->assertStringContainsString( 'min-height:400px;', $html );
+		$this->assertStringContainsString( 'lw-align-center', $html );
+	}
+
+	public function test_min_height_is_clamped(): void {
+		$html = $this->render( [ [ 'active' => true ] ], [ 'min_height_desktop' => '9999', 'min_height_mobile' => '3' ] );
+
+		$this->assertStringContainsString( 'min-height:1200px', $html );
+		$this->assertStringContainsString( '{min-height:100px}', $html );
+	}
 }

@@ -9,6 +9,9 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\Frontend;
 
+use LightweightPlugins\Slider\Data\Defaults;
+use LightweightPlugins\Slider\Data\SliderSanitizer;
+
 /**
  * Renders individual slide HTML elements.
  */
@@ -57,8 +60,10 @@ final class SlideMarkup {
 	 * @return string
 	 */
 	private static function build_style( array $slide ): string {
+		// Style values are validated again here: stored meta may predate the
+		// sanitizer or come from elsewhere, and esc_attr() does not stop CSS.
 		if ( 'color' === $slide['bg_type'] ) {
-			return 'background-color:' . esc_attr( (string) $slide['bg_color'] ) . ';';
+			return 'background-color:' . SliderSanitizer::hex( $slide['bg_color'], (string) Defaults::slide()['bg_color'] ) . ';';
 		}
 
 		if ( empty( $slide['bg_image_id'] ) ) {
@@ -74,7 +79,7 @@ final class SlideMarkup {
 		return sprintf(
 			'background-image:url(%s);background-size:cover;background-position:%s;',
 			esc_url( $url ),
-			esc_attr( (string) $slide['bg_position'] )
+			SliderSanitizer::choice( $slide['bg_position'], array_keys( Defaults::bg_positions() ), 'center center' )
 		);
 	}
 
@@ -85,15 +90,17 @@ final class SlideMarkup {
 	 * @return void
 	 */
 	private static function render_overlay( array $slide ): void {
-		if ( empty( $slide['overlay_color'] ) ) {
+		$color = SliderSanitizer::hex( $slide['overlay_color'], '' );
+
+		if ( '' === $color ) {
 			return;
 		}
 
-		$opacity = (int) $slide['overlay_opacity'] / 100;
+		$opacity = SliderSanitizer::clamp( $slide['overlay_opacity'], 0, 100 ) / 100;
 
 		printf(
 			'<div class="lw-slider__overlay" style="background-color:%s;opacity:%s;"></div>',
-			esc_attr( (string) $slide['overlay_color'] ),
+			esc_attr( $color ),
 			esc_attr( (string) $opacity )
 		);
 	}
@@ -107,8 +114,8 @@ final class SlideMarkup {
 	 * @return void
 	 */
 	private static function render_content( array $slide, array $settings, bool $has_link ): void {
-		$h_class = 'lw-align-' . esc_attr( (string) $settings['content_align_h'] );
-		$v_class = 'lw-valign-' . esc_attr( (string) $settings['content_align_v'] );
+		$h_class = 'lw-align-' . SliderSanitizer::choice( $settings['content_align_h'], SliderSanitizer::ALIGNS_H, 'center' );
+		$v_class = 'lw-valign-' . SliderSanitizer::choice( $settings['content_align_v'], SliderSanitizer::ALIGNS_V, 'center' );
 
 		echo '<div class="lw-slider__content ' . esc_attr( $h_class . ' ' . $v_class ) . '">';
 

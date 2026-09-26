@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace LightweightPlugins\Slider\Frontend;
 
 use LightweightPlugins\Slider\Data\Defaults;
+use LightweightPlugins\Slider\Data\SliderSanitizer;
 
 /**
  * Renders the slider HTML markup for Splide.js.
@@ -51,8 +52,8 @@ final class Renderer {
 			'<div class="%s splide" id="lw-slider-%s" data-lw-slider=\'%s\' style="min-height:%spx;">',
 			esc_attr( $css_class ),
 			esc_attr( (string) $post_id ),
-			esc_attr( wp_json_encode( $splide_data ) ),
-			esc_attr( $settings['min_height_desktop'] )
+			esc_attr( (string) wp_json_encode( $splide_data ) ),
+			esc_attr( (string) self::height( $settings['min_height_desktop'] ) )
 		);
 
 		echo '<div class="splide__track"><ul class="splide__list">';
@@ -154,9 +155,19 @@ final class Renderer {
 		printf(
 			'<style>#lw-slider-%s{min-height:%spx}@media(max-width:768px){#lw-slider-%s{min-height:%spx}}</style>',
 			esc_attr( (string) $post_id ),
-			esc_attr( (string) $settings['min_height_desktop'] ),
+			esc_attr( (string) self::height( $settings['min_height_desktop'] ) ),
 			esc_attr( (string) $post_id ),
-			esc_attr( (string) $settings['min_height_mobile'] )
+			esc_attr( (string) self::height( $settings['min_height_mobile'] ) )
 		);
+	}
+
+	/**
+	 * A min height in pixels, clamped to the allowed range.
+	 *
+	 * @param mixed $value Stored or override value.
+	 * @return int
+	 */
+	private static function height( $value ): int {
+		return SliderSanitizer::clamp( $value, ...SliderSanitizer::MIN_HEIGHT );
 	}
 }
