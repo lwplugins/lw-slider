@@ -124,7 +124,7 @@ final class RendererTest extends MonkeyTestCase {
 		$this->assertStringNotContainsString( 'lw-slider__link', $html );
 	}
 
-	public function test_image_slides_print_an_img_with_alt_lazy_after_the_first(): void {
+	public function test_image_slides_print_an_img_with_alt_eager_first_then_lazy(): void {
 		$html = $this->render(
 			[
 				[ 'active' => true, 'bg_image_id' => 7, 'bg_position' => 'left top', 'image_alt' => 'Beach' ],
@@ -132,7 +132,7 @@ final class RendererTest extends MonkeyTestCase {
 			]
 		);
 
-		$this->assertStringContainsString( '<img data-id="7" data-attrs=\'{"class":"lw-slider__image","sizes":"100vw","decoding":"async","style":"object-position:left top;","loading":false,"alt":"Beach"}\'>', $html );
+		$this->assertStringContainsString( '<img data-id="7" data-attrs=\'{"class":"lw-slider__image","sizes":"100vw","decoding":"async","style":"object-position:left top;","loading":"eager","alt":"Beach"}\'>', $html );
 		$this->assertStringContainsString( '"style":"object-position:center center;","loading":"lazy"}', $html );
 		$this->assertStringNotContainsString( 'background-image', $html );
 	}

@@ -74,7 +74,7 @@ final class SlideMarkup {
 	/**
 	 * The background image as an <img>: srcset/sizes from WordPress, the
 	 * slide's alt text (else the media library's), lazy loading for every
-	 * slide but the first. object-position keeps the chosen focus point.
+	 * slide but the first (which is eager). object-position keeps the focus point.
 	 *
 	 * @param array<string, mixed> $slide Slide data.
 	 * @param int                  $index Position among the shown slides.
@@ -93,7 +93,11 @@ final class SlideMarkup {
 			'sizes'    => '100vw',
 			'decoding' => 'async',
 			'style'    => 'object-position:' . $position . ';',
-			'loading'  => 0 === $index ? false : 'lazy',
+			// An explicit "eager": without a loading attribute, core's content
+			// filters may still add loading="lazy" to the first slide (outside
+			// the main loop, in block widgets). fetchpriority is left to core:
+			// only it knows whether the image is near the top of the page.
+			'loading'  => 0 === $index ? 'eager' : 'lazy',
 		];
 
 		if ( '' !== trim( (string) $slide['image_alt'] ) ) {
