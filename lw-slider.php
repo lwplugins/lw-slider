@@ -4,8 +4,8 @@
  * Plugin URI:        https://github.com/lwplugins/lw-slider
  * Description:       Lightweight responsive slider for WordPress.
  * Version:           1.0.10
- * Requires at least: 6.0
- * Requires PHP:      8.2
+ * Requires at least: 6.6
+ * Requires PHP:      8.0
  * Author:            LW Plugins
  * Author URI:        https://lwplugins.com
  * License:           GPL-2.0-or-later
