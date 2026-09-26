@@ -1,0 +1,1383 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LW Slider\n"
+"Report-Msgid-Bugs-To: https://github.com/lwplugins/lw-slider/issues\n"
+"POT-Creation-Date: 2026-09-26T09:52:45+00:00\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: lw-slider\n"
+
+#. Plugin Name of the plugin
+#: lw-slider.php includes/Admin/AppPage.php:165
+msgid "LW Slider"
+msgstr "LW Slider"
+
+#. Plugin URI of the plugin
+#: lw-slider.php
+msgid "https://github.com/lwplugins/lw-slider"
+msgstr "https://github.com/lwplugins/lw-slider"
+
+#. Description of the plugin
+#: lw-slider.php
+msgid "Lightweight responsive slider for WordPress."
+msgstr "Könnyűsúlyú, reszponzív slider WordPresshez."
+
+#. Author of the plugin
+#: lw-slider.php includes/Admin/ParentPage.php:106
+#: includes/Admin/ParentPage.php:107 includes/Admin/ParentPage.php:128
+msgid "LW Plugins"
+msgstr "LW Plugins"
+
+#. Author URI of the plugin
+#: lw-slider.php
+msgid "https://lwplugins.com"
+msgstr "https://lwplugins.com"
+
+#: includes/Admin/AppPage.php:76 includes/Admin/AppPage.php:77
+#: includes/Plugin.php:118 includes/PostType/SliderPostType.php:41
+#: build/index.js:6
+msgid "Sliders"
+msgstr "Sliderek"
+
+#: includes/Admin/AppPage.php:166
+msgid ""
+"The admin screen files are missing. Re-install the plugin from a release "
+"ZIP, or run \"npm install && npm run build\" in the plugin directory."
+msgstr ""
+"Hiányoznak az admin felület fájljai. Telepítsd újra a bővítményt egy kiadási "
+"ZIP-ből, vagy futtasd az \"npm install && npm run build\" parancsot a "
+"bővítmény mappájában."
+
+#: includes/Admin/ParentPage.php:129
+msgid "Lightweight plugins for WordPress - minimal footprint, maximum impact."
+msgstr ""
+"Könnyűsúlyú WordPress bővítmények – minimális terhelés, maximális hatás."
+
+#: includes/Admin/ParentPage.php:190 build/index.js:2
+msgid "Active"
+msgstr "Aktív"
+
+#: includes/Admin/ParentPage.php:197 build/index.js:6
+msgid "Settings"
+msgstr "Beállítások"
+
+#: includes/Admin/ParentPage.php:201
+msgid "Get Plugin"
+msgstr "Letöltés"
+
+#: includes/Data/Defaults.php:77
+msgid "Left Top"
+msgstr "Balra fent"
+
+#: includes/Data/Defaults.php:78
+msgid "Center Top"
+msgstr "Középen fent"
+
+#: includes/Data/Defaults.php:79
+msgid "Right Top"
+msgstr "Jobbra fent"
+
+#: includes/Data/Defaults.php:80
+msgid "Left Center"
+msgstr "Balra középen"
+
+#: includes/Data/Defaults.php:81
+msgid "Center Center"
+msgstr "Középen"
+
+#: includes/Data/Defaults.php:82
+msgid "Right Center"
+msgstr "Jobbra középen"
+
+#: includes/Data/Defaults.php:83
+msgid "Left Bottom"
+msgstr "Balra lent"
+
+#: includes/Data/Defaults.php:84
+msgid "Center Bottom"
+msgstr "Középen lent"
+
+#: includes/Data/Defaults.php:85
+msgid "Right Bottom"
+msgstr "Jobbra lent"
+
+#: includes/Data/Defaults.php:96 assets/js/block.js:198 build/index.js:1
+msgid "Slide"
+msgstr "Csúszás"
+
+#: includes/Data/Defaults.php:97 assets/js/block.js:199 build/index.js:1
+msgid "Fade"
+msgstr "Áttűnés"
+
+#: includes/Data/SliderCopier.php:42 includes/SiteManager/SliderService.php:80
+msgid "Slider not found."
+msgstr "A slider nem található."
+
+#: includes/Data/SliderCopier.php:47
+msgid "(Copy)"
+msgstr "(másolat)"
+
+#: includes/Frontend/Renderer.php:122 includes/SiteManager/Integration.php:38
+#: assets/js/block.js:163 assets/js/block.js:176 build/index.js:4
+#: build/index.js:6
+msgid "Slider"
+msgstr "Slider"
+
+#: includes/Frontend/Renderer.php:137 includes/Frontend/SplideConfig.php:82
+msgid "Pause autoplay"
+msgstr "Automatikus lejátszás szüneteltetése"
+
+#: includes/Frontend/SlideMarkup.php:120
+msgid "Open the slide link"
+msgstr "A dia linkjének megnyitása"
+
+#: includes/Frontend/SplideConfig.php:73
+msgid "Previous slide"
+msgstr "Előző dia"
+
+#: includes/Frontend/SplideConfig.php:74
+msgid "Next slide"
+msgstr "Következő dia"
+
+#: includes/Frontend/SplideConfig.php:75
+msgid "Go to first slide"
+msgstr "Ugrás az első diára"
+
+#: includes/Frontend/SplideConfig.php:76
+msgid "Go to last slide"
+msgstr "Ugrás az utolsó diára"
+
+#. translators: %s: slide number (Splide fills it in).
+#: includes/Frontend/SplideConfig.php:78
+#, php-format
+msgid "Go to slide %s"
+msgstr "Ugrás a(z) %s. diára"
+
+#. translators: %s: page number (Splide fills it in).
+#: includes/Frontend/SplideConfig.php:80
+#, php-format
+msgid "Go to page %s"
+msgstr "Ugrás a(z) %s. oldalra"
+
+#: includes/Frontend/SplideConfig.php:81
+msgid "Start autoplay"
+msgstr "Automatikus lejátszás indítása"
+
+#: includes/Frontend/SplideConfig.php:83
+msgid "carousel"
+msgstr "körhinta"
+
+#: includes/Frontend/SplideConfig.php:84
+msgid "slide"
+msgstr "dia"
+
+#: includes/Frontend/SplideConfig.php:85
+msgid "Select a slide to show"
+msgstr "Válaszd ki a megjelenítendő diát"
+
+#. translators: 1: slide number, 2: number of slides (Splide fills them in).
+#: includes/Frontend/SplideConfig.php:87
+#, php-format
+msgid "%1$s of %2$s"
+msgstr "%1$s / %2$s"
+
+#: includes/PostType/SliderMeta.php:39
+msgid "Slides of the slider, in order."
+msgstr "A slider diái, sorrendben."
+
+#: includes/PostType/SliderMeta.php:62
+msgid "Slider settings."
+msgstr "A slider beállításai."
+
+#: includes/PostType/SliderPostType.php:29
+msgctxt "Post type general name"
+msgid "Sliders"
+msgstr "Sliderek"
+
+#: includes/PostType/SliderPostType.php:30
+msgctxt "Post type singular name"
+msgid "Slider"
+msgstr "Slider"
+
+#: includes/PostType/SliderPostType.php:31
+msgctxt "Admin menu text"
+msgid "Sliders"
+msgstr "Sliderek"
+
+#: includes/PostType/SliderPostType.php:32
+msgid "Add New"
+msgstr "Új hozzáadása"
+
+#: includes/PostType/SliderPostType.php:33
+msgid "Add New Slider"
+msgstr "Új slider hozzáadása"
+
+#: includes/PostType/SliderPostType.php:34
+msgid "Edit Slider"
+msgstr "Slider szerkesztése"
+
+#: includes/PostType/SliderPostType.php:35
+msgid "New Slider"
+msgstr "Új slider"
+
+#: includes/PostType/SliderPostType.php:36
+msgid "View Slider"
+msgstr "Slider megtekintése"
+
+#: includes/PostType/SliderPostType.php:37
+msgid "View Sliders"
+msgstr "Sliderek megtekintése"
+
+#: includes/PostType/SliderPostType.php:38
+msgid "Search Sliders"
+msgstr "Sliderek keresése"
+
+#: includes/PostType/SliderPostType.php:39
+msgid "No sliders found"
+msgstr "Nincs slider"
+
+#: includes/PostType/SliderPostType.php:40
+msgid "No sliders found in Trash"
+msgstr "Nincs slider a lomtárban"
+
+#: includes/PostType/SliderPostType.php:42
+msgid "Slider Archives"
+msgstr "Slider archívum"
+
+#: includes/PostType/SliderPostType.php:43
+msgid "Insert into slider"
+msgstr "Beszúrás a sliderbe"
+
+#: includes/PostType/SliderPostType.php:44
+msgid "Uploaded to this slider"
+msgstr "Ehhez a sliderhez feltöltve"
+
+#: includes/PostType/SliderPostType.php:45
+msgid "Filter sliders list"
+msgstr "Sliderlista szűrése"
+
+#: includes/PostType/SliderPostType.php:46
+msgid "Sliders list navigation"
+msgstr "Sliderlista navigáció"
+
+#: includes/PostType/SliderPostType.php:47
+msgid "Sliders list"
+msgstr "Sliderlista"
+
+#: includes/Rest/AdminRoutes.php:69
+msgid "Some fields are not valid. Nothing was saved."
+msgstr "Néhány mező nem érvényes. Semmi sem lett mentve."
+
+#: includes/Rest/AdminRoutes.php:81
+msgid "That slider no longer exists."
+msgstr "Ez a slider már nem létezik."
+
+#: includes/Rest/AdminRoutes.php:95
+msgid "The request is too large."
+msgstr "A kérés túl nagy."
+
+#: includes/Rest/Input/Rules.php:29
+msgid "Must be on or off."
+msgstr "Csak be- vagy kikapcsolt lehet."
+
+#. translators: 1: smallest allowed number, 2: largest allowed number.
+#: includes/Rest/Input/Rules.php:57
+#, php-format
+msgid "Enter a whole number from %1$d to %2$d."
+msgstr "Adj meg egy egész számot %1$d és %2$d között."
+
+#: includes/Rest/Input/Rules.php:77
+msgid "Choose one of the listed options."
+msgstr "Válassz a felsorolt lehetőségek közül."
+
+#: includes/Rest/Input/Rules.php:94
+msgid "Must be text."
+msgstr "Szövegnek kell lennie."
+
+#. translators: %d: largest allowed number of characters.
+#: includes/Rest/Input/Rules.php:100
+#, php-format
+msgid "Too long: at most %d characters."
+msgstr "Túl hosszú: legfeljebb %d karakter lehet."
+
+#: includes/Rest/Input/Rules.php:124
+msgid "Enter a color as #rgb or #rrggbb."
+msgstr "A színt #rgb vagy #rrggbb formában add meg."
+
+#: includes/Rest/Input/Rules.php:139
+msgid "Enter a web address (https://...) or a path that starts with /."
+msgstr "Adj meg egy webcímet (https://...) vagy egy /-rel kezdődő útvonalat."
+
+#: includes/Rest/Input/Rules.php:165
+msgid "Use one CSS class name: letters, digits, hyphens and underscores."
+msgstr "Egyetlen CSS osztálynevet adj meg: betűk, számok, kötőjel és aláhúzás."
+
+#: includes/Rest/Input/SettingsValidator.php:36
+msgid "Must be an object of settings."
+msgstr "Beállítás-objektumnak kell lennie."
+
+#: includes/Rest/Input/SettingsValidator.php:47
+msgid "Unknown setting."
+msgstr "Ismeretlen beállítás."
+
+#: includes/Rest/Input/SliderInput.php:72
+#: includes/Rest/Input/SlideValidator.php:75
+msgid "Unknown field."
+msgstr "Ismeretlen mező."
+
+#: includes/Rest/Input/SliderInput.php:143
+msgid "You are not allowed to publish sliders."
+msgstr "Nincs jogosultságod slidert közzétenni."
+
+#: includes/Rest/Input/SlideValidator.php:36
+msgid "Must be a list of slides."
+msgstr "Dialistának kell lennie."
+
+#. translators: %d: largest allowed number of slides.
+#: includes/Rest/Input/SlideValidator.php:42
+#, php-format
+msgid "A slider can hold at most %d slides."
+msgstr "Egy sliderben legfeljebb %d dia lehet."
+
+#: includes/Rest/Input/SlideValidator.php:50
+msgid "Each slide must be an object."
+msgstr "Minden diának objektumnak kell lennie."
+
+#: includes/Rest/SliderActionsController.php:78
+msgid "Move the slider to the trash first."
+msgstr "Előbb helyezd a slidert a lomtárba."
+
+#: includes/Rest/SliderActionsController.php:110
+msgid "This slider is not in the trash."
+msgstr "Ez a slider nincs a lomtárban."
+
+#: includes/Rest/SliderActionsController.php:165 build/index.js:1
+msgid "That did not work. Reload the page and try again."
+msgstr "Ez nem sikerült. Töltsd újra az oldalt, és próbáld újra."
+
+#: includes/Rest/SlidersController.php:134 build/index.js:4 build/index.js:6
+msgid "New slider"
+msgstr "Új slider"
+
+#: includes/Rest/SlidersController.php:141
+#: includes/Rest/SlidersController.php:238
+msgid "The slider could not be saved."
+msgstr "A slidert nem sikerült menteni."
+
+#: includes/Rest/SlidersController.php:192
+msgid ""
+"This slider was changed in another window or by someone else. Reload it to "
+"see the latest version."
+msgstr ""
+"Ezt a slidert közben egy másik ablakban vagy valaki más módosította. Töltsd "
+"újra a legfrissebb változatért."
+
+#: includes/SiteManager/Integration.php:39
+msgid "Slider management abilities"
+msgstr "Slider-kezelő képességek"
+
+#: includes/SiteManager/SliderAbilities.php:38
+msgid "List Sliders"
+msgstr "Sliderek listázása"
+
+#: includes/SiteManager/SliderAbilities.php:39
+msgid "List all sliders with their ID, title, status, and slide count."
+msgstr ""
+"Az összes slider listája azonosítóval, címmel, állapottal és a diák számával."
+
+#: includes/SiteManager/SliderAbilities.php:81
+msgid "Get Slider"
+msgstr "Slider lekérése"
+
+#: includes/SiteManager/SliderAbilities.php:82
+msgid "Get slider details including settings and all slides."
+msgstr "Egy slider részletei a beállításokkal és az összes diával."
+
+#: includes/SiteManager/SliderAbilities.php:92
+msgid "Slider post ID."
+msgstr "A slider bejegyzés-azonosítója."
+
+#: includes/SiteManager/SliderService.php:70
+msgid "Slider ID is required."
+msgstr "A slider azonosítója kötelező."
+
+#: lw-slider.php:40
+msgid ""
+"Autoloader not found. Please run \"composer install\" in the plugin "
+"directory, or re-install the plugin from a release ZIP."
+msgstr ""
+"Az autoloader nem található. Futtasd a \"composer install\" parancsot a "
+"bővítmény mappájában, vagy telepítsd újra egy kiadási ZIP-ből."
+
+#. translators: %d: number of slides.
+#: assets/js/block.js:62
+msgid "%d slide"
+msgid_plural "%d slides"
+msgstr[0] "%d dia"
+msgstr[1] "%d dia"
+
+#: assets/js/block.js:74
+msgid "Select a slider"
+msgstr "Válassz slidert"
+
+#. translators: 1: slider name, 2: "3 slides", 3: slider ID.
+#: assets/js/block.js:80
+msgid "%1$s (%2$s, ID %3$d)"
+msgstr "%1$s (%2$s, azonosító: %3$d)"
+
+#: assets/js/block.js:81 assets/js/block.js:260 build/index.js:4
+#: build/index.js:6
+msgid "(no title)"
+msgstr "(nincs cím)"
+
+#: assets/js/block.js:140 assets/js/block.js:197
+msgid "Slider default"
+msgstr "A slider beállítása"
+
+#: assets/js/block.js:141
+msgid "On"
+msgstr "Be"
+
+#: assets/js/block.js:142 build/index.js:4
+msgid "Off"
+msgstr "Ki"
+
+#: assets/js/block.js:182
+msgid "Edit this slider"
+msgstr "Slider szerkesztése"
+
+#: assets/js/block.js:189
+msgid "Override settings"
+msgstr "Beállítások felülírása"
+
+#: assets/js/block.js:193
+msgid "Override the slider's saved settings for this block only."
+msgstr "A slider mentett beállításainak felülírása csak ebben a blokkban."
+
+#: assets/js/block.js:195 build/index.js:1
+msgid "Autoplay"
+msgstr "Automatikus lejátszás"
+
+#: assets/js/block.js:196 build/index.js:1
+msgid "Transition"
+msgstr "Átmenet"
+
+#: assets/js/block.js:201 build/index.js:1
+msgid "Dots"
+msgstr "Pontok"
+
+#: assets/js/block.js:202 build/index.js:1
+msgid "Arrows"
+msgstr "Nyilak"
+
+#: assets/js/block.js:203 build/index.js:1
+msgid "Loop"
+msgstr "Körbeforgás"
+
+#: assets/js/block.js:207
+msgid "Minimum height on desktop (px)"
+msgstr "Minimális magasság asztali gépen (px)"
+
+#: assets/js/block.js:208
+msgid "Leave empty to use the slider setting."
+msgstr "Hagyd üresen a slider beállításához."
+
+#: assets/js/block.js:220
+msgid "Select a slider to show."
+msgstr "Válaszd ki a megjelenítendő slidert."
+
+#: assets/js/block.js:222
+msgid "Loading sliders…"
+msgstr "Sliderek betöltése…"
+
+#: assets/js/block.js:224
+msgid "There is no published slider yet. Create one first."
+msgstr "Még nincs közzétett slider. Előbb hozz létre egyet."
+
+#: assets/js/block.js:236
+msgid "Create a slider"
+msgstr "Slider létrehozása"
+
+#. translators: %d: slider ID.
+#: assets/js/block.js:263
+msgid "Slider %d (not published)"
+msgstr "%d. slider (nincs közzétéve)"
+
+#. translators: %d: slider ID.
+#: assets/js/block.js:277
+msgid "ID %d"
+msgstr "Azonosító: %d"
+
+#: assets/js/block.js:296
+msgid "Change"
+msgstr "Csere"
+
+#: build/index.js:1
+msgid "Published"
+msgstr "Közzétéve"
+
+#: build/index.js:1
+msgid "Draft"
+msgstr "Vázlat"
+
+#: build/index.js:1
+msgid "Pending review"
+msgstr "Ellenőrzésre vár"
+
+#: build/index.js:1
+msgid "Private"
+msgstr "Privát"
+
+#: build/index.js:1
+msgid "Scheduled"
+msgstr "Időzítve"
+
+#: build/index.js:1
+msgid "In the trash"
+msgstr "Lomtárban"
+
+#. translators: %d: slide position (1, 2, …).
+#. translators: %d: slide position.
+#: build/index.js:1 build/index.js:4
+msgid "Slide %d"
+msgstr "%d. dia"
+
+#: build/index.js:1
+msgid "Slider saved."
+msgstr "Slider mentve."
+
+#: build/index.js:1
+msgid "Nothing was saved. Fix the highlighted fields and save again."
+msgstr "Semmi sem lett mentve. Javítsd a kiemelt mezőket, és mentsd újra."
+
+#: build/index.js:1
+msgid "Try again"
+msgstr "Újra"
+
+#: build/index.js:1 build/index.js:4
+msgid "Loading…"
+msgstr "Betöltés…"
+
+#: build/index.js:1 build/index.js:4
+msgid "Copied"
+msgstr "Másolva"
+
+#: build/index.js:1
+msgid "Copy"
+msgstr "Másolás"
+
+#: build/index.js:1
+msgid ""
+"This slider is not published yet, so the shortcode and the block show "
+"nothing on the site."
+msgstr ""
+"Ez a slider még nincs közzétéve, ezért a shortcode és a blokk semmit sem "
+"jelenít meg az oldalon."
+
+#: build/index.js:1
+msgid "Publish and save changes"
+msgstr "Közzététel és a változások mentése"
+
+#: build/index.js:1
+msgid "Publish"
+msgstr "Közzététel"
+
+#: build/index.js:1 build/index.js:5
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: build/index.js:1
+msgid "Paste it into a post, a page, or a text widget."
+msgstr "Illeszd be egy bejegyzésbe, oldalba vagy szöveges widgetbe."
+
+#: build/index.js:1
+msgid "Block"
+msgstr "Blokk"
+
+#: build/index.js:1
+msgid ""
+"In the block editor, add the LW Slider block and choose this slider. The "
+"block can also override autoplay, the transition, dots, arrows, loop and the "
+"height for that one place."
+msgstr ""
+"A blokkszerkesztőben add hozzá az LW Slider blokkot, és válaszd ki ezt a "
+"slidert. A blokk az adott helyen felülírhatja az automatikus lejátszást, az "
+"átmenetet, a pontokat, a nyilakat, a körbeforgást és a magasságot is."
+
+#: build/index.js:1
+msgid "Theme template"
+msgstr "Témasablon"
+
+#: build/index.js:1
+msgid "For developers: print the slider from a PHP template."
+msgstr "Fejlesztőknek: a slider kiírása PHP sablonból."
+
+#: build/index.js:1
+msgid "PHP code"
+msgstr "PHP kód"
+
+#: build/index.js:1
+msgid "Slider actions"
+msgstr "Slider műveletek"
+
+#: build/index.js:1 build/index.js:6
+msgid "Slider duplicated as a draft."
+msgstr "A slider vázlatként duplikálva."
+
+#: build/index.js:1
+msgid "Duplicate the saved version"
+msgstr "A mentett változat duplikálása"
+
+#: build/index.js:1
+msgid "Duplicate"
+msgstr "Duplikálás"
+
+#: build/index.js:1
+msgid "Move this slider to the trash? Your unsaved changes are lost."
+msgstr "Lomtárba helyezed ezt a slidert? A mentetlen változtatásaid elvesznek."
+
+#: build/index.js:1
+msgid "Move this slider to the trash? You can restore it from the Trash."
+msgstr "Lomtárba helyezed ezt a slidert? A Lomtárból visszaállíthatod."
+
+#: build/index.js:1
+msgid "Move to trash"
+msgstr "Lomtárba helyezés"
+
+#: build/index.js:1 build/index.js:6
+msgid "Slider moved to the trash."
+msgstr "A slider a lomtárba került."
+
+#: build/index.js:1
+msgid "Actions use the saved version of the slider."
+msgstr "A műveletek a slider mentett változatával dolgoznak."
+
+#: build/index.js:1
+msgid "General"
+msgstr "Általános"
+
+#: build/index.js:1 build/index.js:4
+msgid "Name"
+msgstr "Név"
+
+#: build/index.js:1
+msgid "Only shown in the admin and the block picker."
+msgstr "Csak az adminban és a blokkválasztóban látszik."
+
+#: build/index.js:1
+msgid ""
+"Only published sliders show up on the site (shortcode and block). A draft is "
+"kept for later."
+msgstr ""
+"Csak a közzétett sliderek jelennek meg az oldalon (shortcode és blokk). A "
+"vázlat későbbre megmarad."
+
+#: build/index.js:1
+msgid ""
+"You can save drafts; someone who may publish has to publish this slider."
+msgstr ""
+"Vázlatot menthetsz; a közzétételt olyasvalakinek kell elvégeznie, akinek van "
+"rá jogosultsága."
+
+#: build/index.js:1
+msgid "Size and visibility"
+msgstr "Méret és láthatóság"
+
+#: build/index.js:1
+msgid "Minimum height on desktop"
+msgstr "Minimális magasság asztali gépen"
+
+#: build/index.js:1
+msgid "Minimum height on mobile"
+msgstr "Minimális magasság mobilon"
+
+#: build/index.js:1
+msgid "Used on screens up to 768 px wide."
+msgstr "Legfeljebb 768 px széles kijelzőkön érvényes."
+
+#: build/index.js:1
+msgid "Hide on mobile"
+msgstr "Elrejtés mobilon"
+
+#: build/index.js:1
+msgid "The slider is not shown on screens up to 768 px wide."
+msgstr "A slider nem jelenik meg a legfeljebb 768 px széles kijelzőkön."
+
+#: build/index.js:1
+msgid "Navigation"
+msgstr "Navigáció"
+
+#: build/index.js:1
+msgid "One dot per slide under the slider."
+msgstr "Diánként egy pont a slider alján."
+
+#: build/index.js:1
+msgid "Previous and next buttons on the sides."
+msgstr "Előző és következő gomb a két oldalon."
+
+#: build/index.js:1
+msgid "Arrows on mobile too"
+msgstr "Nyilak mobilon is"
+
+#: build/index.js:1
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#: build/index.js:1
+msgid ""
+"The left and right arrow keys change the slide while the slider has focus."
+msgstr "A bal és jobb nyílbillentyű diát vált, amíg a slideren van a fókusz."
+
+#: build/index.js:1
+msgid "Swipe and drag"
+msgstr "Húzás és lapozás"
+
+#: build/index.js:1
+msgid "Change slides with a finger or by dragging with the mouse."
+msgstr "Diaváltás ujjal vagy egérrel húzva."
+
+#: build/index.js:1
+msgid "Playback"
+msgstr "Lejátszás"
+
+#: build/index.js:1
+msgid "After the last slide comes the first one again."
+msgstr "Az utolsó dia után újra az első következik."
+
+#: build/index.js:1
+msgid ""
+"Slides change on their own. Visitors get a pause button, and playback stops "
+"while they point at or focus the slider when the option below is on."
+msgstr ""
+"A diák maguktól váltanak. A látogatók szünet gombot kapnak, és ha az alábbi "
+"opció be van kapcsolva, a lejátszás megáll, amíg az egér a slider fölött van "
+"vagy rajta a fókusz."
+
+#: build/index.js:1
+msgid "Time per slide"
+msgstr "Idő diánként"
+
+#: build/index.js:1
+msgid "Pause on hover and focus"
+msgstr "Szünet egér fölötte és fókusz esetén"
+
+#: build/index.js:1
+msgid "Content alignment"
+msgstr "Tartalom igazítása"
+
+#: build/index.js:1
+msgid "Horizontal"
+msgstr "Vízszintes"
+
+#: build/index.js:1
+msgid "Horizontal alignment"
+msgstr "Vízszintes igazítás"
+
+#: build/index.js:1
+msgid "Left"
+msgstr "Balra"
+
+#: build/index.js:1 build/index.js:2
+msgid "Center"
+msgstr "Középre"
+
+#: build/index.js:1
+msgid "Right"
+msgstr "Jobbra"
+
+#: build/index.js:1
+msgid "Vertical"
+msgstr "Függőleges"
+
+#: build/index.js:1
+msgid "Vertical alignment"
+msgstr "Függőleges igazítás"
+
+#: build/index.js:1
+msgid "Top"
+msgstr "Fent"
+
+#: build/index.js:1
+msgid "Middle"
+msgstr "Középen"
+
+#: build/index.js:1
+msgid "Bottom"
+msgstr "Lent"
+
+#: build/index.js:1
+msgid "Advanced"
+msgstr "Haladó"
+
+#: build/index.js:1
+msgid "Default text styles"
+msgstr "Alapértelmezett szövegstílusok"
+
+#: build/index.js:1
+msgid ""
+"White, shadowed headline and text, and a styled button. Turn it off to style "
+"them in your theme."
+msgstr ""
+"Fehér, árnyékolt címsor és szöveg, formázott gomb. Kapcsold ki, ha a "
+"témádban formáznád őket."
+
+#: build/index.js:1
+msgid "Extra CSS class"
+msgstr "Egyedi CSS osztály"
+
+#: build/index.js:1
+msgid "One class name, added to the slider for your own CSS."
+msgstr "Egy osztálynév, amelyet a slider megkap a saját CSS-edhez."
+
+#: build/index.js:1
+msgid "(hex code)"
+msgstr "(hexa kód)"
+
+#: build/index.js:1
+msgid "This image is no longer in the media library."
+msgstr "Ez a kép már nincs a médiatárban."
+
+#: build/index.js:1
+msgid "No image chosen yet."
+msgstr "Még nincs kép kiválasztva."
+
+#: build/index.js:1
+msgid "Choose a slide image"
+msgstr "Válassz képet a diához"
+
+#: build/index.js:1
+msgid "Use this image"
+msgstr "Ezt a képet használom"
+
+#: build/index.js:1
+msgid "Replace image"
+msgstr "Kép cseréje"
+
+#: build/index.js:1
+msgid "Choose image"
+msgstr "Kép kiválasztása"
+
+#: build/index.js:1
+msgid "Remove image"
+msgstr "Kép eltávolítása"
+
+#. translators: %s: slide name.
+#: build/index.js:2
+msgid "Remove \"%s\" from this slider?"
+msgstr "Eltávolítod a(z) \"%s\" diát ebből a sliderből?"
+
+#: build/index.js:2
+msgid "Remove slide"
+msgstr "Dia eltávolítása"
+
+#: build/index.js:2
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: build/index.js:2
+msgid "Inactive slides are kept here but not shown on the site."
+msgstr "Az inaktív diák itt megmaradnak, de az oldalon nem jelennek meg."
+
+#: build/index.js:2
+msgid "Background"
+msgstr "Háttér"
+
+#: build/index.js:2
+msgid "Type"
+msgstr "Típus"
+
+#: build/index.js:2
+msgid "Background type"
+msgstr "Háttér típusa"
+
+#: build/index.js:2
+msgid "Image"
+msgstr "Kép"
+
+#: build/index.js:2
+msgid "Color"
+msgstr "Szín"
+
+#: build/index.js:2
+msgid "Focus point"
+msgstr "Fókuszpont"
+
+#: build/index.js:2
+msgid "The part of the image that stays visible when the slide crops it."
+msgstr "A kép azon része, amely akkor is látszik, ha a dia levágja a képet."
+
+#: build/index.js:2
+msgid "Top left"
+msgstr "Bal felső"
+
+#: build/index.js:2
+msgid "Top center"
+msgstr "Felül középen"
+
+#: build/index.js:2
+msgid "Top right"
+msgstr "Jobb felső"
+
+#: build/index.js:2
+msgid "Middle left"
+msgstr "Bal középen"
+
+#: build/index.js:2
+msgid "Middle right"
+msgstr "Jobb középen"
+
+#: build/index.js:2
+msgid "Bottom left"
+msgstr "Bal alsó"
+
+#: build/index.js:2
+msgid "Bottom center"
+msgstr "Alul középen"
+
+#: build/index.js:2
+msgid "Bottom right"
+msgstr "Jobb alsó"
+
+#: build/index.js:2
+msgid "Alternative text"
+msgstr "Alternatív szöveg"
+
+#: build/index.js:2
+msgid ""
+"Describe the image for screen readers. Leave it empty for a decorative "
+"image; the media library text is used then."
+msgstr ""
+"Írd le a képet a képernyőolvasóknak. Díszítő képnél hagyd üresen; ilyenkor a "
+"médiatár szövege kerül ki."
+
+#: build/index.js:2
+msgid "Background color"
+msgstr "Háttérszín"
+
+#: build/index.js:2
+msgid "Content"
+msgstr "Tartalom"
+
+#: build/index.js:2
+msgid "Headline"
+msgstr "Címsor"
+
+#: build/index.js:2
+msgid "Subheadline"
+msgstr "Alcím"
+
+#: build/index.js:2
+msgid "Description"
+msgstr "Leírás"
+
+#: build/index.js:2
+msgid "Overlay"
+msgstr "Átfedés"
+
+#: build/index.js:2
+msgid "A color layer over the background that makes light text easier to read."
+msgstr ""
+"Színréteg a háttér fölött, amely könnyebben olvashatóvá teszi a világos "
+"szöveget."
+
+#: build/index.js:2
+msgid "Overlay color"
+msgstr "Átfedés színe"
+
+#: build/index.js:2
+msgid "Opacity (%)"
+msgstr "Átlátszatlanság (%)"
+
+#: build/index.js:2
+msgid "Link"
+msgstr "Link"
+
+#: build/index.js:2
+msgid "Link address"
+msgstr "Link címe"
+
+#: build/index.js:2
+msgid "Leave it empty for a slide without a link."
+msgstr "Hagyd üresen, ha a dia nem linkel sehova."
+
+#: build/index.js:2
+msgid "Clickable area"
+msgstr "Kattintható terület"
+
+#: build/index.js:2
+msgid "Whole slide"
+msgstr "Az egész dia"
+
+#: build/index.js:2
+msgid "Button"
+msgstr "Gomb"
+
+#: build/index.js:2
+msgid "Button text"
+msgstr "Gomb szövege"
+
+#: build/index.js:2
+msgid "The button only shows when it has a text."
+msgstr "A gomb csak akkor jelenik meg, ha van szövege."
+
+#: build/index.js:2
+msgid "Open in a new tab"
+msgstr "Megnyitás új lapon"
+
+#. translators: 1: slide name, 2: new position, 3: number of slides.
+#: build/index.js:3
+msgid "%1$s moved to position %2$d of %3$d."
+msgstr "%1$s áthelyezve: %2$d. hely a(z) %3$d közül."
+
+#: build/index.js:4 build/index.js:6
+msgid "Has invalid fields"
+msgstr "Érvénytelen mezőket tartalmaz"
+
+#. translators: %s: slide name.
+#: build/index.js:4
+msgid "Move up: %s"
+msgstr "Feljebb: %s"
+
+#. translators: %s: slide name.
+#: build/index.js:4
+msgid "Move down: %s"
+msgstr "Lejjebb: %s"
+
+#: build/index.js:4
+msgid "Add slide"
+msgstr "Dia hozzáadása"
+
+#: build/index.js:4 build/index.js:6
+msgid "Slides"
+msgstr "Diák"
+
+#: build/index.js:4
+msgid "Drag to reorder, or use the arrows."
+msgstr "Húzással rendezheted át, vagy használd a nyilakat."
+
+#: build/index.js:4
+msgid "No slides yet"
+msgstr "Még nincs dia"
+
+#: build/index.js:4
+msgid ""
+"A slide has a background image or color, and optionally a headline, a text "
+"and a link."
+msgstr ""
+"Egy diának háttérképe vagy háttérszíne van, és lehet címsora, szövege és "
+"linkje is."
+
+#: build/index.js:4
+msgid "Add the first slide"
+msgstr "Első dia hozzáadása"
+
+#: build/index.js:4
+msgid "Reload the latest version"
+msgstr "A legfrissebb változat betöltése"
+
+#: build/index.js:4
+msgid ""
+"This slider was changed in another window or by someone else. Reloading "
+"shows the latest version and drops your unsaved changes here."
+msgstr ""
+"Ezt a slidert közben egy másik ablakban vagy valaki más módosította. Az "
+"újratöltés a legfrissebb változatot mutatja, az itteni mentetlen "
+"változtatásaid pedig elvesznek."
+
+#: build/index.js:4
+msgid ""
+"This slider is in the trash. Restore it from the Trash to show it on the "
+"site again."
+msgstr ""
+"Ez a slider a lomtárban van. Állítsd vissza a Lomtárból, hogy újra "
+"megjelenjen az oldalon."
+
+#: build/index.js:4
+msgid "Only you see it, in this list and in the block picker."
+msgstr "Csak te látod, ebben a listában és a blokkválasztóban."
+
+#: build/index.js:4
+msgid "Cancel"
+msgstr "Mégse"
+
+#: build/index.js:4
+msgid "Create slider"
+msgstr "Slider létrehozása"
+
+#: build/index.js:4
+msgid "just now"
+msgstr "épp most"
+
+#. translators: %d: number of minutes.
+#: build/index.js:4
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d perce"
+msgstr[1] "%d perce"
+
+#. translators: %d: number of hours.
+#: build/index.js:4
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d órája"
+msgstr[1] "%d órája"
+
+#: build/index.js:4
+msgid "Search sliders"
+msgstr "Sliderek keresése"
+
+#: build/index.js:4
+msgid "Filter"
+msgstr "Szűrő"
+
+#: build/index.js:4
+msgid "Clear"
+msgstr "Törlés"
+
+#: build/index.js:4
+msgid "Clear all filters"
+msgstr "Minden szűrő törlése"
+
+#: build/index.js:4
+msgid "All"
+msgstr "Mind"
+
+#: build/index.js:4
+msgid "No sliders match your search."
+msgstr "Egy slider sem felel meg a keresésnek."
+
+#: build/index.js:4
+msgid "The trash is empty."
+msgstr "A lomtár üres."
+
+#: build/index.js:4
+msgid "No sliders yet."
+msgstr "Még nincs slider."
+
+#: build/index.js:4
+msgid "Previous page"
+msgstr "Előző oldal"
+
+#: build/index.js:4
+msgid "Next page"
+msgstr "Következő oldal"
+
+#: build/index.js:4
+msgid "Rows per page"
+msgstr "Sorok oldalanként"
+
+#: build/index.js:4
+msgid "Select all sliders on this page"
+msgstr "Az oldal összes sliderének kijelölése"
+
+#: build/index.js:4
+msgid "Clear selection"
+msgstr "Kijelölés törlése"
+
+#: build/index.js:4
+msgid "Bulk actions"
+msgstr "Csoportos műveletek"
+
+#. translators: %d: number of sliders.
+#: build/index.js:4
+msgid "%d slider"
+msgid_plural "%d sliders"
+msgstr[0] "%d slider"
+msgstr[1] "%d slider"
+
+#. translators: %d: number of results.
+#: build/index.js:4
+msgid "%d result"
+msgid_plural "%d results"
+msgstr[0] "%d találat"
+msgstr[1] "%d találat"
+
+#. translators: 1: current page, 2: total pages.
+#: build/index.js:4
+msgid "Page %1$d of %2$d"
+msgstr "%1$d. oldal / %2$d"
+
+#. translators: %s: slider name.
+#: build/index.js:4
+msgid "Select: %s"
+msgstr "Kijelölés: %s"
+
+#. translators: %d: number of selected sliders.
+#: build/index.js:4
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d kijelölve"
+msgstr[1] "%d kijelölve"
+
+#. translators: 1: sliders the action applies to, 2: selected sliders.
+#: build/index.js:4
+msgid "applies to %1$d of %2$d"
+msgstr "%2$d közül %1$d-re vonatkozik"
+
+#. translators: 1: active slides, 2: all slides.
+#: build/index.js:5
+msgid "%1$d of %2$d active"
+msgstr "%2$d diából %1$d aktív"
+
+#. translators: %s: slider name.
+#: build/index.js:5
+msgid "Copy the shortcode of %s"
+msgstr "%s shortcode-jának másolása"
+
+#: build/index.js:5
+msgid "Changed"
+msgstr "Módosítva"
+
+#: build/index.js:5
+msgid "Actions"
+msgstr "Műveletek"
+
+#: build/index.js:5
+msgid "Restore"
+msgstr "Visszaállítás"
+
+#. translators: %s: slider name.
+#: build/index.js:6
+msgid "Delete \"%s\" for good? This cannot be undone."
+msgstr "Véglegesen törlöd: \"%s\"? Ez nem vonható vissza."
+
+#: build/index.js:6
+msgid "Delete for good"
+msgstr "Végleges törlés"
+
+#. translators: %s: slider name.
+#: build/index.js:6
+msgid "Edit %s"
+msgstr "%s szerkesztése"
+
+#. translators: %s: slider name.
+#: build/index.js:6
+msgid "Duplicate %s"
+msgstr "%s duplikálása"
+
+#. translators: %s: slider name.
+#: build/index.js:6
+msgid "Move %s to the trash"
+msgstr "%s lomtárba helyezése"
+
+#: build/index.js:6
+msgid "Edit the copy"
+msgstr "Másolat szerkesztése"
+
+#: build/index.js:6
+msgid "Undo"
+msgstr "Visszavonás"
+
+#. translators: %s: status the slider got back, e.g. "Draft".
+#: build/index.js:6
+msgid "Slider restored (%s)."
+msgstr "Slider visszaállítva (%s)."
+
+#: build/index.js:6
+msgid "Slider deleted."
+msgstr "Slider törölve."
+
+#: build/index.js:6
+msgid "Status"
+msgstr "Állapot"
+
+#: build/index.js:6
+msgid "Sliders in the trash"
+msgstr "Sliderek a lomtárban"
+
+#: build/index.js:6
+msgid "Create your first slider"
+msgstr "Hozd létre az első slideredet"
+
+#: build/index.js:6
+msgid ""
+"Add slides with an image or a color, a headline and a link, then show the "
+"slider with its shortcode or the LW Slider block."
+msgstr ""
+"Adj hozzá diákat képpel vagy színnel, címsorral és linkkel, majd jelenítsd "
+"meg a slidert a shortcode-jával vagy az LW Slider blokkal."
+
+#: build/index.js:6
+msgid "LW Plugins (opens in a new tab)"
+msgstr "LW Plugins (új lapon nyílik meg)"
+
+#: build/index.js:6
+msgid "Trash"
+msgstr "Lomtár"
+
+#: build/index.js:6
+msgid "Embed"
+msgstr "Beágyazás"
+
+#: build/index.js:6
+msgid "LW Slider home"
+msgstr "LW Slider kezdőlap"
+
+#: build/index.js:6
+msgid "LW Slider sections"
+msgstr "LW Slider szakaszok"
+
+#: build/index.js:6
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: build/index.js:6
+msgid "(opens in a new tab)"
+msgstr "(új lapon nyílik meg)"
+
+#: build/index.js:6
+msgid "Unsaved changes"
+msgstr "Mentetlen változások"
+
+#: build/index.js:6
+msgid "Discard"
+msgstr "Elvetés"
+
+#: build/index.js:6
+msgid "Save changes"
+msgstr "Változások mentése"
+
+#: build/index.js:6
+msgid "Save"
+msgstr "Mentés"
+
+#: build/index.js:6
+msgid "Discard changes"
+msgstr "Változások elvetése"
+
+#: build/index.js:6
+msgid "Keep editing"
+msgstr "Szerkesztés folytatása"
+
+#: build/index.js:6
+msgid "This slider has unsaved changes. Leave it and discard them?"
+msgstr ""
+"Ennek a slidernek mentetlen változásai vannak. Kilépsz, és elveted őket?"
+
+#: block.json
+msgctxt "block title"
+msgid "LW Slider"
+msgstr "LW Slider"
+
+#: block.json
+msgctxt "block description"
+msgid "Display a slider from LW Slider."
+msgstr "Egy LW Slider slider megjelenítése."
+
+#: block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr "slider"
+
+#: block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr "körhinta"
+
+#: block.json
+msgctxt "block keyword"
+msgid "slideshow"
+msgstr "diavetítés"
