@@ -29,7 +29,6 @@ final class SlideMarkup {
 		$has_link = ! empty( $slide['link_url'] );
 		$is_full  = 'full_slide' === $slide['cta_mode'];
 		$target   = '_blank' === $slide['link_target'] ? $slide['link_target'] : '_self';
-		$rel      = '_blank' === $target ? ' rel="noopener"' : '';
 
 		echo '<li class="splide__slide" style="' . esc_attr( $style ) . '">';
 
@@ -40,7 +39,7 @@ final class SlideMarkup {
 				'<a href="%s" target="%s"%s class="lw-slider__link">',
 				esc_url( $slide['link_url'] ),
 				esc_attr( $target ),
-				esc_attr( $rel )
+				'_blank' === $target ? ' rel="noopener"' : ''
 			);
 		}
 
@@ -146,13 +145,12 @@ final class SlideMarkup {
 	 */
 	private static function render_button( array $slide ): void {
 		$target = '_blank' === $slide['link_target'] ? '_blank' : '_self';
-		$rel    = '_blank' === $target ? ' rel="noopener"' : '';
 
 		printf(
 			'<a href="%s" target="%s"%s class="lw-slider__button">%s</a>',
 			esc_url( $slide['link_url'] ),
 			esc_attr( $target ),
-			esc_attr( $rel ),
+			'_blank' === $target ? ' rel="noopener"' : '',
 			esc_html( $slide['button_text'] )
 		);
 	}

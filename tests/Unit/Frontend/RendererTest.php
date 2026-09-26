@@ -170,4 +170,16 @@ final class RendererTest extends MonkeyTestCase {
 		$this->assertStringContainsString( 'min-height:1200px', $html );
 		$this->assertStringContainsString( '{min-height:100px}', $html );
 	}
+
+	public function test_new_tab_links_carry_a_valid_rel_attribute(): void {
+		$html = $this->render(
+			[
+				[ 'active' => true, 'link_url' => 'https://example.test/a', 'link_target' => '_blank' ],
+				[ 'active' => true, 'link_url' => 'https://example.test/b', 'link_target' => '_blank', 'cta_mode' => 'button', 'button_text' => 'Go' ],
+			]
+		);
+
+		$this->assertSame( 2, substr_count( $html, 'target="_blank" rel="noopener"' ) );
+		$this->assertStringNotContainsString( '&quot;noopener', $html );
+	}
 }
