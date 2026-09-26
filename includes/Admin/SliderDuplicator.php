@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\Admin;
 
+use LightweightPlugins\Slider\Data\SliderCopier;
 use LightweightPlugins\Slider\PostType\SliderPostType;
 
 /**
@@ -20,8 +21,8 @@ final class SliderDuplicator {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_filter( 'post_row_actions', array( $this, 'add_row_action' ), 10, 2 );
-		add_action( 'admin_init', array( $this, 'handle_duplicate' ) );
+		add_filter( 'post_row_actions', [ $this, 'add_row_action' ], 10, 2 );
+		add_action( 'admin_init', [ $this, 'handle_duplicate' ] );
 	}
 
 	/**
@@ -32,11 +33,7 @@ final class SliderDuplicator {
 	 * @return array<string, string>
 	 */
 	public function add_row_action( array $actions, \WP_Post $post ): array {
-		if ( SliderPostType::POST_TYPE !== $post->post_type ) {
-			return $actions;
-		}
-
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! SliderCopier::is_copyable( $post ) || ! self::can_duplicate( $post->ID ) ) {
 			return $actions;
 		}
 
@@ -74,40 +71,34 @@ final class SliderDuplicator {
 			wp_die( esc_html__( 'Invalid nonce.', 'lw-slider' ) );
 		}
 
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! self::can_duplicate( $post_id ) ) {
 			wp_die( esc_html__( 'Permission denied.', 'lw-slider' ) );
 		}
 
 		$original = get_post( $post_id );
 
-		if ( ! $original || SliderPostType::POST_TYPE !== $original->post_type ) {
+		if ( ! SliderCopier::is_copyable( $original ) ) {
 			wp_die( esc_html__( 'Slider not found.', 'lw-slider' ) );
 		}
 
-		$new_id = wp_insert_post(
-			array(
-				'post_title'  => $original->post_title . ' ' . __( '(Copy)', 'lw-slider' ),
-				'post_type'   => SliderPostType::POST_TYPE,
-				'post_status' => 'draft',
-			)
-		);
+		$new_id = SliderCopier::copy( $original );
 
 		if ( is_wp_error( $new_id ) ) {
 			wp_die( esc_html__( 'Failed to duplicate slider.', 'lw-slider' ) );
 		}
 
-		$slides   = get_post_meta( $post_id, '_lw_slider_slides', true );
-		$settings = get_post_meta( $post_id, '_lw_slider_settings', true );
-
-		if ( $slides ) {
-			update_post_meta( $new_id, '_lw_slider_slides', $slides );
-		}
-
-		if ( $settings ) {
-			update_post_meta( $new_id, '_lw_slider_settings', $settings );
-		}
-
 		wp_safe_redirect( admin_url( 'post.php?action=edit&post=' . $new_id ) );
 		exit;
+	}
+
+	/**
+	 * The user may read and edit the source (edit_post) and create sliders
+	 * (edit_posts): a copy must never expose a slider the user cannot edit.
+	 *
+	 * @param int $post_id Source slider ID.
+	 * @return bool
+	 */
+	public static function can_duplicate( int $post_id ): bool {
+		return current_user_can( 'edit_post', $post_id ) && current_user_can( 'edit_posts' );
 	}
 }
