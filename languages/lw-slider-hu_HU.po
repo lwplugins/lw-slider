@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LW Slider\n"
 "Report-Msgid-Bugs-To: https://github.com/lwplugins/lw-slider/issues\n"
-"POT-Creation-Date: 2026-09-26T10:24:05+00:00\n"
+"POT-Creation-Date: 2026-09-26T10:26:03+00:00\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,11 +104,11 @@ msgstr "Középen lent"
 msgid "Right Bottom"
 msgstr "Jobbra lent"
 
-#: includes/Data/Defaults.php:96 assets/js/block.js:198 build/index.js:1
+#: includes/Data/Defaults.php:96 assets/js/block.js:199 build/index.js:1
 msgid "Slide"
 msgstr "Csúszás"
 
-#: includes/Data/Defaults.php:97 assets/js/block.js:199 build/index.js:1
+#: includes/Data/Defaults.php:97 assets/js/block.js:200 build/index.js:1
 msgid "Fade"
 msgstr "Áttűnés"
 
@@ -121,7 +121,7 @@ msgid "(Copy)"
 msgstr "(másolat)"
 
 #: includes/Frontend/Renderer.php:122 includes/SiteManager/Integration.php:38
-#: assets/js/block.js:163 assets/js/block.js:176 build/index.js:4
+#: assets/js/block.js:164 assets/js/block.js:177 build/index.js:4
 #: build/index.js:6
 msgid "Slider"
 msgstr "Slider"
@@ -413,105 +413,105 @@ msgstr ""
 "bővítmény mappájában, vagy telepítsd újra egy kiadási ZIP-ből."
 
 #. translators: %d: number of slides.
-#: assets/js/block.js:62
+#: assets/js/block.js:63
 msgid "%d slide"
 msgid_plural "%d slides"
 msgstr[0] "%d dia"
 msgstr[1] "%d dia"
 
-#: assets/js/block.js:74
+#: assets/js/block.js:75
 msgid "Select a slider"
 msgstr "Válassz slidert"
 
 #. translators: 1: slider name, 2: "3 slides", 3: slider ID.
-#: assets/js/block.js:80
+#: assets/js/block.js:81
 msgid "%1$s (%2$s, ID %3$d)"
 msgstr "%1$s (%2$s, azonosító: %3$d)"
 
-#: assets/js/block.js:81 assets/js/block.js:260 build/index.js:4
+#: assets/js/block.js:82 assets/js/block.js:261 build/index.js:4
 #: build/index.js:6
 msgid "(no title)"
 msgstr "(nincs cím)"
 
-#: assets/js/block.js:140 assets/js/block.js:197
+#: assets/js/block.js:141 assets/js/block.js:198
 msgid "Slider default"
 msgstr "A slider beállítása"
 
-#: assets/js/block.js:141
+#: assets/js/block.js:142
 msgid "On"
 msgstr "Be"
 
-#: assets/js/block.js:142 build/index.js:4
+#: assets/js/block.js:143 build/index.js:4
 msgid "Off"
 msgstr "Ki"
 
-#: assets/js/block.js:182
+#: assets/js/block.js:183
 msgid "Edit this slider"
 msgstr "Slider szerkesztése"
 
-#: assets/js/block.js:189
+#: assets/js/block.js:190
 msgid "Override settings"
 msgstr "Beállítások felülírása"
 
-#: assets/js/block.js:193
+#: assets/js/block.js:194
 msgid "Override the slider's saved settings for this block only."
 msgstr "A slider mentett beállításainak felülírása csak ebben a blokkban."
 
-#: assets/js/block.js:195 build/index.js:1
+#: assets/js/block.js:196 build/index.js:1
 msgid "Autoplay"
 msgstr "Automatikus lejátszás"
 
-#: assets/js/block.js:196 build/index.js:1
+#: assets/js/block.js:197 build/index.js:1
 msgid "Transition"
 msgstr "Átmenet"
 
-#: assets/js/block.js:201 build/index.js:1
+#: assets/js/block.js:202 build/index.js:1
 msgid "Dots"
 msgstr "Pontok"
 
-#: assets/js/block.js:202 build/index.js:1
+#: assets/js/block.js:203 build/index.js:1
 msgid "Arrows"
 msgstr "Nyilak"
 
-#: assets/js/block.js:203 build/index.js:1
+#: assets/js/block.js:204 build/index.js:1
 msgid "Loop"
 msgstr "Körbeforgás"
 
-#: assets/js/block.js:207
+#: assets/js/block.js:208
 msgid "Minimum height on desktop (px)"
 msgstr "Minimális magasság asztali gépen (px)"
 
-#: assets/js/block.js:208
+#: assets/js/block.js:209
 msgid "Leave empty to use the slider setting."
 msgstr "Hagyd üresen a slider beállításához."
 
-#: assets/js/block.js:220
+#: assets/js/block.js:221
 msgid "Select a slider to show."
 msgstr "Válaszd ki a megjelenítendő slidert."
 
-#: assets/js/block.js:222
+#: assets/js/block.js:223
 msgid "Loading sliders…"
 msgstr "Sliderek betöltése…"
 
-#: assets/js/block.js:224
+#: assets/js/block.js:225
 msgid "There is no published slider yet. Create one first."
 msgstr "Még nincs közzétett slider. Előbb hozz létre egyet."
 
-#: assets/js/block.js:236
+#: assets/js/block.js:237
 msgid "Create a slider"
 msgstr "Slider létrehozása"
 
 #. translators: %d: slider ID.
-#: assets/js/block.js:263
+#: assets/js/block.js:264
 msgid "Slider %d (not published)"
 msgstr "%d. slider (nincs közzétéve)"
 
 #. translators: %d: slider ID.
-#: assets/js/block.js:277
+#: assets/js/block.js:278
 msgid "ID %d"
 msgstr "Azonosító: %d"
 
-#: assets/js/block.js:296
+#: assets/js/block.js:297
 msgid "Change"
 msgstr "Csere"
 

@@ -14,6 +14,7 @@ return [
 		'wp-blocks',
 		'wp-components',
 		'wp-element',
+		'wp-html-entities',
 		'wp-i18n',
 	],
 	// The plugin version, so browsers fetch the script again after an update.

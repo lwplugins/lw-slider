@@ -67,4 +67,16 @@ final class SliderBlockTest extends MonkeyTestCase {
 		$this->assertSame( LW_SLIDER_VERSION, SliderBlock::metadata( [ 'name' => 'lw-slider/slider', 'version' => '1.0.0' ] )['version'] );
 		$this->assertSame( '2', SliderBlock::metadata( [ 'name' => 'core/image', 'version' => '2' ] )['version'] );
 	}
+
+	public function test_the_editor_script_loads_every_wp_global_it_uses(): void {
+		$deps   = ( require dirname( __DIR__, 3 ) . '/assets/js/block.asset.php' )['dependencies'];
+		$script = (string) file_get_contents( dirname( __DIR__, 3 ) . '/assets/js/block.js' );
+
+		preg_match_all( '/\bwp\.([a-zA-Z]+)\./', $script, $used );
+
+		foreach ( array_unique( $used[1] ) as $global ) {
+			$handle = 'wp-' . strtolower( (string) preg_replace( '/(?<!^)[A-Z]/', '-$0', $global ) );
+			$this->assertContains( $handle, $deps, 'block.js uses wp.' . $global );
+		}
+	}
 }

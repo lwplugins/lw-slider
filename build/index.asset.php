@@ -8,10 +8,11 @@
 		'wp-compose',
 		'wp-data',
 		'wp-element',
+		'wp-html-entities',
 		'wp-i18n',
 		'wp-keycodes',
 		'wp-notices',
 		'wp-primitives'
 	),
-	'version' => 'e491c34960dfba242f8f'
+	'version' => '620c80aa2e51e3ae69a6'
 );

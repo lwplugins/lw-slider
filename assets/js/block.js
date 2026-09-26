@@ -15,6 +15,7 @@
 	var __ = wp.i18n.__;
 	var _n = wp.i18n._n;
 	var sprintf = wp.i18n.sprintf;
+	var decodeEntities = wp.htmlEntities.decodeEntities;
 	var registerBlockType = wp.blocks.registerBlockType;
 	var InspectorControls = wp.blockEditor.InspectorControls;
 	var useBlockProps = wp.blockEditor.useBlockProps;
@@ -78,7 +79,7 @@
 				label: sprintf(
 					/* translators: 1: slider name, 2: "3 slides", 3: slider ID. */
 					__( '%1$s (%2$s, ID %3$d)', 'lw-slider' ),
-					s.title || __( '(no title)', 'lw-slider' ),
+					decodeEntities( s.title || '' ) || __( '(no title)', 'lw-slider' ),
 					slidesText( s.slides ),
 					s.id
 				),
