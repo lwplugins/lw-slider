@@ -82,7 +82,7 @@ final class ParentPage {
 				'icon'          => 'dashicons-images-alt2',
 				'icon_color'    => '#e91e63',
 				'constant'      => 'LW_SLIDER_VERSION',
-				'settings_page' => 'edit.php?post_type=lw-slider',
+				'settings_page' => 'lw-slider',
 				'github'        => 'https://github.com/lwplugins/lw-slider',
 			),
 		);
