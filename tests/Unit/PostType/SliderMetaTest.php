@@ -15,8 +15,8 @@ use LightweightPlugins\Slider\Tests\Unit\MonkeyTestCase;
 use LightweightPlugins\Slider\Tests\Unit\StubsWordPress;
 
 /**
- * Both keys are registered with the shared sanitizer, an edit_post auth
- * check and an edit-context-only REST schema, and without a default.
+ * Both keys are registered with the shared sanitizer and an edit_post auth
+ * check, without a default, and outside the core REST API.
  */
 final class SliderMetaTest extends MonkeyTestCase {
 
@@ -48,7 +48,7 @@ final class SliderMetaTest extends MonkeyTestCase {
 		foreach ( $this->registered as $args ) {
 			$this->assertTrue( $args['single'] );
 			$this->assertArrayNotHasKey( 'default', $args );
-			$this->assertSame( [ 'edit' ], $args['show_in_rest']['schema']['context'] );
+			$this->assertFalse( $args['show_in_rest'] );
 		}
 	}
 
@@ -64,12 +64,5 @@ final class SliderMetaTest extends MonkeyTestCase {
 		Functions\expect( 'user_can' )->once()->with( 3, 'edit_post', 11 )->andReturn( false );
 
 		$this->assertFalse( call_user_func( $this->registered['_lw_slider_slides']['auth_callback'], true, '_lw_slider_slides', 11, 3 ) );
-	}
-
-	public function test_the_slide_schema_lists_every_stored_key(): void {
-		$properties = $this->registered['_lw_slider_slides']['show_in_rest']['schema']['items']['properties'];
-
-		$this->assertCount( 16, $properties );
-		$this->assertCount( 17, $this->registered['_lw_slider_settings']['show_in_rest']['schema']['properties'] );
 	}
 }

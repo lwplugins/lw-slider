@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-26T10:22:47+00:00\n"
+"POT-Creation-Date: 2026-09-26T10:24:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: lw-slider\n"
@@ -144,7 +144,7 @@ msgstr ""
 msgid "Pause autoplay"
 msgstr ""
 
-#: includes/Frontend/SlideMarkup.php:120
+#: includes/Frontend/SlideMarkup.php:124
 msgid "Open the slide link"
 msgstr ""
 
@@ -202,7 +202,7 @@ msgstr ""
 msgid "Slides of the slider, in order."
 msgstr ""
 
-#: includes/PostType/SliderMeta.php:62
+#: includes/PostType/SliderMeta.php:52
 msgid "Slider settings."
 msgstr ""
 

@@ -56,13 +56,15 @@ final class SliderPostType {
 			// its own menu item.
 			'show_ui'            => true,
 			'show_in_menu'       => false,
-			'show_in_rest'       => true,
+			// Not in the core REST API (/wp/v2/lw-slider would list slider
+			// titles to anyone): the admin uses lw-slider/v1/admin and the
+			// block lw-slider/v1/sliders.
+			'show_in_rest'       => false,
 			'query_var'          => false,
 			'capability_type'    => 'post',
 			'has_archive'        => false,
 			'hierarchical'       => false,
-			// custom-fields: the registered meta shows up in the REST API.
-			'supports'           => [ 'title', 'custom-fields' ],
+			'supports'           => [ 'title' ],
 		);
 
 		register_post_type( self::POST_TYPE, $args );

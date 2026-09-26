@@ -9,15 +9,15 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\PostType;
 
-use LightweightPlugins\Slider\Data\Defaults;
 use LightweightPlugins\Slider\Data\SliderRepository;
 use LightweightPlugins\Slider\Data\SliderSanitizer;
 
 /**
  * Registers the two slider meta keys. Every write, from any code path
- * (update_post_meta, the REST API, the custom fields box), runs through
- * the shared sanitizer, and only users who may edit the slider may change
- * them. In the REST API they appear in the edit context only.
+ * (update_post_meta, XML-RPC, other plugins), runs through the
+ * shared sanitizer, and only users who may edit the slider may change them.
+ * They are not in the core REST API (neither is the post type): the admin
+ * and the block use the plugin's own lw-slider/v1 routes.
  *
  * No `default` is registered on purpose: get_post_meta() keeps returning
  * '' for a slider without meta, as it always has.
@@ -39,17 +39,7 @@ final class SliderMeta {
 				'description'       => __( 'Slides of the slider, in order.', 'lw-slider' ),
 				'sanitize_callback' => [ self::class, 'sanitize_slides' ],
 				'auth_callback'     => [ self::class, 'can_edit' ],
-				'show_in_rest'      => [
-					'schema' => [
-						'type'    => 'array',
-						'context' => [ 'edit' ],
-						'items'   => [
-							'type'                 => 'object',
-							'properties'           => self::slide_properties(),
-							'additionalProperties' => false,
-						],
-					],
-				],
+				'show_in_rest'      => false,
 			]
 		);
 
@@ -62,14 +52,7 @@ final class SliderMeta {
 				'description'       => __( 'Slider settings.', 'lw-slider' ),
 				'sanitize_callback' => [ self::class, 'sanitize_settings' ],
 				'auth_callback'     => [ self::class, 'can_edit' ],
-				'show_in_rest'      => [
-					'schema' => [
-						'type'                 => 'object',
-						'context'              => [ 'edit' ],
-						'properties'           => self::settings_properties(),
-						'additionalProperties' => false,
-					],
-				],
+				'show_in_rest'      => false,
 			]
 		);
 	}
@@ -105,95 +88,5 @@ final class SliderMeta {
 	 */
 	public static function can_edit( $allowed, $meta_key, $post_id, $user_id = 0 ): bool { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- Core's auth_callback signature.
 		return user_can( (int) $user_id, 'edit_post', (int) $post_id );
-	}
-
-	/**
-	 * REST schema of one slide.
-	 *
-	 * @return array<string, array<string, mixed>>
-	 */
-	private static function slide_properties(): array {
-		$text = [ 'type' => 'string' ];
-
-		return [
-			'title'           => $text,
-			'active'          => [ 'type' => 'boolean' ],
-			'bg_type'         => [
-				'type' => 'string',
-				'enum' => SliderSanitizer::BG_TYPES,
-			],
-			'bg_image_id'     => [
-				'type'    => 'integer',
-				'minimum' => 0,
-			],
-			'bg_color'        => $text,
-			'bg_position'     => [
-				'type' => 'string',
-				'enum' => array_keys( Defaults::bg_positions() ),
-			],
-			'overlay_color'   => $text,
-			'overlay_opacity' => [
-				'type'    => 'integer',
-				'minimum' => 0,
-				'maximum' => 100,
-			],
-			'headline'        => $text,
-			'subheadline'     => $text,
-			'description'     => $text,
-			'link_url'        => $text,
-			'link_target'     => [
-				'type' => 'string',
-				'enum' => SliderSanitizer::LINK_TARGETS,
-			],
-			'cta_mode'        => [
-				'type' => 'string',
-				'enum' => SliderSanitizer::CTA_MODES,
-			],
-			'button_text'     => $text,
-			'image_alt'       => $text,
-		];
-	}
-
-	/**
-	 * REST schema of the settings.
-	 *
-	 * @return array<string, array<string, mixed>>
-	 */
-	private static function settings_properties(): array {
-		$bool   = [ 'type' => 'boolean' ];
-		$height = [ 'type' => [ 'string', 'integer' ] ];
-
-		return [
-			'min_height_desktop' => $height,
-			'min_height_mobile'  => $height,
-			'dots'               => $bool,
-			'arrows'             => $bool,
-			'arrows_mobile'      => $bool,
-			'autoplay'           => $bool,
-			'autoplay_delay'     => [
-				'type'    => 'integer',
-				'minimum' => SliderSanitizer::AUTOPLAY_DELAY[0],
-				'maximum' => SliderSanitizer::AUTOPLAY_DELAY[1],
-			],
-			'transition'         => [
-				'type' => 'string',
-				'enum' => array_keys( Defaults::transitions() ),
-			],
-			'loop'               => $bool,
-			'content_align_h'    => [
-				'type' => 'string',
-				'enum' => SliderSanitizer::ALIGNS_H,
-			],
-			'content_align_v'    => [
-				'type' => 'string',
-				'enum' => SliderSanitizer::ALIGNS_V,
-			],
-			'use_default_styles' => $bool,
-			'custom_class'       => [ 'type' => 'string' ],
-			'swipe'              => $bool,
-			'keyboard'           => $bool,
-			'pause_on_hover'     => $bool,
-			'hide_on_mobile'     => $bool,
-		];
 	}
 }
