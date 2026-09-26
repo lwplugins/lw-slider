@@ -19,6 +19,7 @@ use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Shortcode;
 use LightweightPlugins\Slider\PostType\SliderMeta;
 use LightweightPlugins\Slider\PostType\SliderPostType;
+use LightweightPlugins\Slider\Rest\AdminRoutes;
 use LightweightPlugins\Slider\SiteManager\Integration;
 
 /**
@@ -58,6 +59,7 @@ final class Plugin {
 	private function init_post_type(): void {
 		add_action( 'init', [ SliderPostType::class, 'register' ] );
 		add_action( 'init', [ SliderMeta::class, 'register' ] );
+		add_action( 'rest_api_init', [ AdminRoutes::class, 'register_routes' ] );
 	}
 
 	/**
