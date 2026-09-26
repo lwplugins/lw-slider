@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\Block;
 
-use LightweightPlugins\Slider\Data\Defaults;
+use LightweightPlugins\Slider\Admin\AppPage;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Renderer;
 use LightweightPlugins\Slider\Frontend\SliderVisibility;
@@ -21,12 +21,18 @@ use LightweightPlugins\Slider\PostType\SliderPostType;
 final class SliderBlock {
 
 	/**
+	 * Editor script handle WordPress generates from block.json.
+	 */
+	private const EDITOR_HANDLE = 'lw-slider-slider-editor-script';
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'register' ) );
-		add_action( 'rest_api_init', array( $this, 'register_rest_route' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'localize_script' ) );
+		add_action( 'init', [ $this, 'register' ] );
+		add_action( 'rest_api_init', [ $this, 'register_rest_route' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'localize_script' ] );
+		add_filter( 'block_type_metadata', [ self::class, 'metadata' ] );
 	}
 
 	/**
@@ -41,25 +47,41 @@ final class SliderBlock {
 
 		register_block_type(
 			LW_SLIDER_PATH . 'block.json',
-			array(
-				'render_callback' => array( $this, 'render' ),
-			)
+			[
+				'render_callback' => [ $this, 'render' ],
+			]
 		);
 	}
 
 	/**
-	 * Localize block editor script with admin URL.
+	 * The block's version is the plugin version, so the editor stylesheet
+	 * (versioned from block.json) is fetched again after every update.
+	 *
+	 * @param array<string, mixed> $metadata Block metadata.
+	 * @return array<string, mixed>
+	 */
+	public static function metadata( array $metadata ): array {
+		if ( 'lw-slider/slider' === ( $metadata['name'] ?? '' ) ) {
+			$metadata['version'] = LW_SLIDER_VERSION;
+		}
+
+		return $metadata;
+	}
+
+	/**
+	 * Hand the editor script the app URL and its translations.
 	 *
 	 * @return void
 	 */
 	public function localize_script(): void {
 		wp_localize_script(
-			'lw-slider-slider-editor-script',
+			self::EDITOR_HANDLE,
 			'lwSliderBlock',
-			array(
-				'adminUrl' => admin_url(),
-			)
+			[
+				'appUrl' => AppPage::url(),
+			]
 		);
+		wp_set_script_translations( self::EDITOR_HANDLE, 'lw-slider', LW_SLIDER_PATH . 'languages' );
 	}
 
 	/**
@@ -116,6 +138,9 @@ final class SliderBlock {
 	/**
 	 * Server-side render callback.
 	 *
+	 * The slider sits in a wrapper with the block supports (wide/full
+	 * alignment, extra CSS class, anchor).
+	 *
 	 * @param array<string, mixed> $attributes Block attributes.
 	 * @return string
 	 */
@@ -128,9 +153,15 @@ final class SliderBlock {
 
 		$overrides = $this->parse_overrides( $attributes );
 
+		$html = Renderer::render( $slider_id, $overrides );
+
+		if ( '' === $html ) {
+			return '';
+		}
+
 		Assets::mark_as_needed();
 
-		return Renderer::render( $slider_id, $overrides );
+		return '<div ' . get_block_wrapper_attributes() . '>' . $html . '</div>';
 	}
 
 	/**

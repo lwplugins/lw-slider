@@ -1,11 +1,21 @@
 <?php
-return array(
-	'dependencies' => array(
-		'wp-blocks',
-		'wp-element',
-		'wp-block-editor',
-		'wp-components',
+/**
+ * Dependencies and version of the block editor script.
+ *
+ * @package LightweightPlugins\Slider
+ */
+
+declare(strict_types=1);
+
+return [
+	'dependencies' => [
 		'wp-api-fetch',
-	),
-	'version'      => '1.0.0',
-);
+		'wp-block-editor',
+		'wp-blocks',
+		'wp-components',
+		'wp-element',
+		'wp-i18n',
+	],
+	// The plugin version, so browsers fetch the script again after an update.
+	'version'      => defined( 'LW_SLIDER_VERSION' ) ? LW_SLIDER_VERSION : '1',
+];
