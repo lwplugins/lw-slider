@@ -198,7 +198,7 @@ export default function SettingsTab( { store } ) {
 						'autoplay',
 						__( 'Autoplay', 'lw-slider' ),
 						__(
-							'Slides change on their own. Visitors get a pause button, and playback stops while they point at or focus the slider when the option below is on.',
+							'Slides change on their own. Visitors get a pause button, and playback stops while the slider has keyboard focus, and while they point at it when the option below is on.',
 							'lw-slider'
 						),
 						s.autoplay && (
@@ -221,10 +221,7 @@ export default function SettingsTab( { store } ) {
 								<SwitchList>
 									{ toggle(
 										'pause_on_hover',
-										__(
-											'Pause on hover and focus',
-											'lw-slider'
-										)
+										__( 'Pause on hover', 'lw-slider' )
 									) }
 								</SwitchList>
 							</>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LW Slider\n"
 "Report-Msgid-Bugs-To: https://github.com/lwplugins/lw-slider/issues\n"
-"POT-Creation-Date: 2026-09-26T10:20:40+00:00\n"
+"POT-Creation-Date: 2026-09-26T10:21:38+00:00\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgstr "(másolat)"
 msgid "Slider"
 msgstr "Slider"
 
-#: includes/Frontend/Renderer.php:137 includes/Frontend/SplideConfig.php:82
+#: includes/Frontend/Renderer.php:137 includes/Frontend/SplideConfig.php:84
 msgid "Pause autoplay"
 msgstr "Automatikus lejátszás szüneteltetése"
 
@@ -134,52 +134,52 @@ msgstr "Automatikus lejátszás szüneteltetése"
 msgid "Open the slide link"
 msgstr "A dia linkjének megnyitása"
 
-#: includes/Frontend/SplideConfig.php:73
+#: includes/Frontend/SplideConfig.php:75
 msgid "Previous slide"
 msgstr "Előző dia"
 
-#: includes/Frontend/SplideConfig.php:74
+#: includes/Frontend/SplideConfig.php:76
 msgid "Next slide"
 msgstr "Következő dia"
 
-#: includes/Frontend/SplideConfig.php:75
+#: includes/Frontend/SplideConfig.php:77
 msgid "Go to first slide"
 msgstr "Ugrás az első diára"
 
-#: includes/Frontend/SplideConfig.php:76
+#: includes/Frontend/SplideConfig.php:78
 msgid "Go to last slide"
 msgstr "Ugrás az utolsó diára"
 
 #. translators: %s: slide number (Splide fills it in).
-#: includes/Frontend/SplideConfig.php:78
+#: includes/Frontend/SplideConfig.php:80
 #, php-format
 msgid "Go to slide %s"
 msgstr "Ugrás a(z) %s. diára"
 
 #. translators: %s: page number (Splide fills it in).
-#: includes/Frontend/SplideConfig.php:80
+#: includes/Frontend/SplideConfig.php:82
 #, php-format
 msgid "Go to page %s"
 msgstr "Ugrás a(z) %s. oldalra"
 
-#: includes/Frontend/SplideConfig.php:81
+#: includes/Frontend/SplideConfig.php:83
 msgid "Start autoplay"
 msgstr "Automatikus lejátszás indítása"
 
-#: includes/Frontend/SplideConfig.php:83
+#: includes/Frontend/SplideConfig.php:85
 msgid "carousel"
 msgstr "körhinta"
 
-#: includes/Frontend/SplideConfig.php:84
+#: includes/Frontend/SplideConfig.php:86
 msgid "slide"
 msgstr "dia"
 
-#: includes/Frontend/SplideConfig.php:85
+#: includes/Frontend/SplideConfig.php:87
 msgid "Select a slide to show"
 msgstr "Válaszd ki a megjelenítendő diát"
 
 #. translators: 1: slide number, 2: number of slides. Keep this order: the slider fills them in from left to right.
-#: includes/Frontend/SplideConfig.php:99
+#: includes/Frontend/SplideConfig.php:101
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s / %2$s"
@@ -750,19 +750,20 @@ msgstr "Az utolsó dia után újra az első következik."
 #: build/index.js:1
 msgid ""
 "Slides change on their own. Visitors get a pause button, and playback stops "
-"while they point at or focus the slider when the option below is on."
+"while the slider has keyboard focus, and while they point at it when the "
+"option below is on."
 msgstr ""
-"A diák maguktól váltanak. A látogatók szünet gombot kapnak, és ha az alábbi "
-"opció be van kapcsolva, a lejátszás megáll, amíg az egér a slider fölött van "
-"vagy rajta a fókusz."
+"A diák maguktól váltanak. A látogatók szünet gombot kapnak, és a lejátszás "
+"megáll, amíg a slideren van a billentyűzetfókusz, illetve – ha az alábbi "
+"opció be van kapcsolva – amíg az egér fölötte van."
 
 #: build/index.js:1
 msgid "Time per slide"
 msgstr "Idő diánként"
 
 #: build/index.js:1
-msgid "Pause on hover and focus"
-msgstr "Szünet egér fölötte és fókusz esetén"
+msgid "Pause on hover"
+msgstr "Szünet, amíg az egér fölötte van"
 
 #: build/index.js:1
 msgid "Content alignment"

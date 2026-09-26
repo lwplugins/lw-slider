@@ -46,7 +46,9 @@ final class SplideConfig {
 			$config['autoplay']     = true;
 			$config['interval']     = (int) $s['autoplay_delay'];
 			$config['pauseOnHover'] = ! empty( $s['pause_on_hover'] );
-			$config['pauseOnFocus'] = ! empty( $s['pause_on_hover'] );
+			// Always: keyboard and screen reader users must be able to stop
+			// the motion while they are inside the slider (WCAG 2.2.2).
+			$config['pauseOnFocus'] = true;
 		}
 
 		return $config;

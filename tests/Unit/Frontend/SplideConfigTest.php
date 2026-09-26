@@ -29,4 +29,25 @@ final class SplideConfigTest extends MonkeyTestCase {
 
 		$this->assertSame( '%s / %s', SplideConfig::slide_label() );
 	}
+
+	public function test_focus_always_pauses_autoplay_hover_follows_the_setting(): void {
+		Functions\stubTranslationFunctions();
+		$settings = [
+			'loop'           => false,
+			'dots'           => true,
+			'arrows'         => true,
+			'swipe'          => true,
+			'keyboard'       => true,
+			'transition'     => 'slide',
+			'autoplay'       => true,
+			'autoplay_delay' => 5000,
+			'pause_on_hover' => false,
+		];
+
+		$config = SplideConfig::build( $settings, 3, 'Hero' );
+
+		$this->assertTrue( $config['pauseOnFocus'] );
+		$this->assertFalse( $config['pauseOnHover'] );
+		$this->assertTrue( SplideConfig::build( [ 'pause_on_hover' => true ] + $settings, 3, 'Hero' )['pauseOnHover'] );
+	}
 }
