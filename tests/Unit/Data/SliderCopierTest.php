@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace LightweightPlugins\Slider\Tests\Unit\Data;
 
 use Brain\Monkey\Functions;
-use LightweightPlugins\Slider\Admin\SliderDuplicator;
 use LightweightPlugins\Slider\Data\SliderCopier;
 use LightweightPlugins\Slider\Data\SliderRepository;
 use LightweightPlugins\Slider\Tests\Unit\MonkeyTestCase;
@@ -19,7 +18,8 @@ use WP_Error;
 use WP_Post;
 
 /**
- * Duplicating: per-post permission, post type, insert errors, backslashes.
+ * Duplicating: post type, insert errors, backslashes. The per-slider
+ * permission is checked by the REST route (SliderPermissions::duplicate).
  */
 final class SliderCopierTest extends MonkeyTestCase {
 
@@ -72,29 +72,5 @@ final class SliderCopierTest extends MonkeyTestCase {
 
 		$this->assertInstanceOf( WP_Error::class, SliderCopier::copy( $this->slider( [ 'post_type' => 'page' ] ) ) );
 		$this->assertInstanceOf( WP_Error::class, SliderCopier::copy( $this->slider( [ 'post_status' => 'trash' ] ) ) );
-	}
-
-	public function test_duplicating_needs_edit_post_on_the_source(): void {
-		Functions\when( 'current_user_can' )->alias( static fn( $cap, $id = null ) => 'edit_posts' === $cap );
-
-		$this->assertFalse( SliderDuplicator::can_duplicate( 5 ) );
-	}
-
-	public function test_no_row_action_for_a_slider_the_user_cannot_edit(): void {
-		Functions\when( 'current_user_can' )->alias( static fn( $cap, $id = null ) => 'edit_posts' === $cap );
-
-		$actions = ( new SliderDuplicator() )->add_row_action( [ 'edit' => 'x' ], $this->slider() );
-
-		$this->assertSame( [ 'edit' => 'x' ], $actions );
-	}
-
-	public function test_row_action_for_an_editable_slider(): void {
-		Functions\when( 'current_user_can' )->justReturn( true );
-		Functions\when( 'admin_url' )->alias( static fn( $path = '' ) => 'https://example.test/wp-admin/' . $path );
-		Functions\when( 'wp_nonce_url' )->alias( static fn( $url ) => $url . '&_wpnonce=n' );
-
-		$actions = ( new SliderDuplicator() )->add_row_action( [], $this->slider() );
-
-		$this->assertArrayHasKey( 'lw_duplicate', $actions );
 	}
 }

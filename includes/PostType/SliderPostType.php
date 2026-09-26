@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\PostType;
 
-use LightweightPlugins\Slider\Admin\ParentPage;
-
 /**
  * Registers the Slider custom post type.
  */
@@ -53,8 +51,11 @@ final class SliderPostType {
 			'labels'             => $labels,
 			'public'             => false,
 			'publicly_queryable' => false,
+			// The core screens stay reachable (capabilities, links), but they
+			// redirect to the slider manager (Admin\ClassicRedirect), which has
+			// its own menu item.
 			'show_ui'            => true,
-			'show_in_menu'       => ParentPage::SLUG,
+			'show_in_menu'       => false,
 			'show_in_rest'       => true,
 			'query_var'          => false,
 			'capability_type'    => 'post',

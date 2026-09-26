@@ -9,11 +9,9 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider;
 
+use LightweightPlugins\Slider\Admin\AppPage;
+use LightweightPlugins\Slider\Admin\ClassicRedirect;
 use LightweightPlugins\Slider\Admin\ParentPage;
-use LightweightPlugins\Slider\Admin\SliderColumns;
-use LightweightPlugins\Slider\Admin\SliderDuplicator;
-use LightweightPlugins\Slider\Admin\SliderMetaBox;
-use LightweightPlugins\Slider\Admin\SliderSaveHandler;
 use LightweightPlugins\Slider\Block\SliderBlock;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Shortcode;
@@ -72,11 +70,9 @@ final class Plugin {
 			return;
 		}
 
-		add_action( 'admin_menu', array( ParentPage::class, 'maybe_register' ) );
-		new SliderMetaBox();
-		new SliderColumns();
-		new SliderDuplicator();
-		new SliderSaveHandler();
+		add_action( 'admin_menu', [ ParentPage::class, 'maybe_register' ] );
+		new AppPage();
+		new ClassicRedirect();
 	}
 
 	/**
@@ -119,8 +115,7 @@ final class Plugin {
 	 * @return array<string>
 	 */
 	public function add_settings_link( array $links ): array {
-		$url  = admin_url( 'edit.php?post_type=lw-slider' );
-		$link = '<a href="' . esc_url( $url ) . '">' . __( 'Sliders', 'lw-slider' ) . '</a>';
+		$link = '<a href="' . esc_url( AppPage::url() ) . '">' . esc_html__( 'Sliders', 'lw-slider' ) . '</a>';
 		array_unshift( $links, $link );
 		return $links;
 	}
