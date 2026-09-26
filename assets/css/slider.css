@@ -28,8 +28,10 @@
 	min-height: inherit;
 }
 
-/* Background image (an <img>, so it gets srcset, lazy loading and alt text) */
-.lw-slider .lw-slider__image {
+/* Background image (an <img>, so it gets srcset, lazy loading and alt text).
+   Specific enough to beat common theme rules such as
+   ".entry-content img { height: auto; max-width: 100%; }". */
+.lw-slider .splide__slide img.lw-slider__image {
 	position: absolute;
 	top: 0;
 	left: 0;
