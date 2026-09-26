@@ -11,6 +11,7 @@ namespace LightweightPlugins\Slider;
 
 use LightweightPlugins\Slider\Admin\AppPage;
 use LightweightPlugins\Slider\Admin\ClassicRedirect;
+use LightweightPlugins\Slider\Admin\Hub\Hub;
 use LightweightPlugins\Slider\Admin\ParentPage;
 use LightweightPlugins\Slider\Block\SliderBlock;
 use LightweightPlugins\Slider\Frontend\Assets;
@@ -30,6 +31,7 @@ final class Plugin {
 	 */
 	public function __construct() {
 		$this->init_hooks();
+		Hub::init( LW_SLIDER_FILE );
 		$this->init_post_type();
 		$this->init_admin();
 		$this->init_frontend();
