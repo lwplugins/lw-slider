@@ -64,7 +64,7 @@ trait StubsWordPress {
 					$sanitized = preg_replace( '|%[a-fA-F0-9][a-fA-F0-9]|', '', (string) $classname );
 					return (string) preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $sanitized );
 				},
-				'esc_url_raw'             => static function ( $url ) {
+				'esc_url_raw'             => static function ( $url, $protocols = null ) {
 					$url = trim( (string) $url );
 					if ( '' === $url ) {
 						return '';
@@ -72,7 +72,12 @@ trait StubsWordPress {
 					if ( '/' === $url[0] || '#' === $url[0] ) {
 						return $url;
 					}
-					return preg_match( '#^(https?:|mailto:|tel:)#i', $url ) ? str_replace( ' ', '%20', $url ) : ( preg_match( '#^[a-z][a-z0-9+.-]*:#i', $url ) ? '' : 'http://' . $url );
+					// Core's wp_allowed_protocols() when none are given.
+					$protocols = $protocols ?? [ 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'irc6', 'ircs', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn' ];
+					if ( preg_match( '#^([a-z][a-z0-9+.-]*):#i', $url, $scheme ) ) {
+						return in_array( strtolower( $scheme[1] ), $protocols, true ) ? str_replace( ' ', '%20', $url ) : '';
+					}
+					return 'http://' . $url;
 				},
 				'wp_unslash'              => static fn( $value ) => $deep( $value, 'stripslashes' ),
 				'wp_slash'                => static fn( $value ) => $deep( $value, 'addslashes' ),

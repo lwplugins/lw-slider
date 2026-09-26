@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LW Slider\n"
 "Report-Msgid-Bugs-To: https://github.com/lwplugins/lw-slider/issues\n"
-"POT-Creation-Date: 2026-09-26T10:26:03+00:00\n"
+"POT-Creation-Date: 2026-09-26T10:28:19+00:00\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,11 +307,11 @@ msgstr "Túl hosszú: legfeljebb %d karakter lehet."
 msgid "Enter a color as #rgb or #rrggbb."
 msgstr "A színt #rgb vagy #rrggbb formában add meg."
 
-#: includes/Rest/Input/Rules.php:139
+#: includes/Rest/Input/Rules.php:141
 msgid "Enter a web address (https://...) or a path that starts with /."
 msgstr "Adj meg egy webcímet (https://...) vagy egy /-rel kezdődő útvonalat."
 
-#: includes/Rest/Input/Rules.php:165
+#: includes/Rest/Input/Rules.php:167
 msgid "Use one CSS class name: letters, digits, hyphens and underscores."
 msgstr "Egyetlen CSS osztálynevet adj meg: betűk, számok, kötőjel és aláhúzás."
 
@@ -323,26 +323,26 @@ msgstr "Beállítás-objektumnak kell lennie."
 msgid "Unknown setting."
 msgstr "Ismeretlen beállítás."
 
-#: includes/Rest/Input/SliderInput.php:72
-#: includes/Rest/Input/SlideValidator.php:75
+#: includes/Rest/Input/SliderInput.php:74
+#: includes/Rest/Input/SlideValidator.php:87
 msgid "Unknown field."
 msgstr "Ismeretlen mező."
 
-#: includes/Rest/Input/SliderInput.php:143
+#: includes/Rest/Input/SliderInput.php:145
 msgid "You are not allowed to publish sliders."
 msgstr "Nincs jogosultságod slidert közzétenni."
 
-#: includes/Rest/Input/SlideValidator.php:36
+#: includes/Rest/Input/SlideValidator.php:47
 msgid "Must be a list of slides."
 msgstr "Dialistának kell lennie."
 
 #. translators: %d: largest allowed number of slides.
-#: includes/Rest/Input/SlideValidator.php:42
+#: includes/Rest/Input/SlideValidator.php:53
 #, php-format
 msgid "A slider can hold at most %d slides."
 msgstr "Egy sliderben legfeljebb %d dia lehet."
 
-#: includes/Rest/Input/SlideValidator.php:50
+#: includes/Rest/Input/SlideValidator.php:61
 msgid "Each slide must be an object."
 msgstr "Minden diának objektumnak kell lennie."
 

@@ -16,6 +16,11 @@ use LightweightPlugins\Slider\Data\SliderSanitizer;
  * Checks a full, ordered slide list (the list replaces the stored one).
  * A slide may leave keys out (they get their default); an unknown key or an
  * invalid value is an error keyed `slides.{index}.{field}`.
+ *
+ * Every save resends every slide, so a text or link that is already stored
+ * (on any slide, as slides can move) is accepted unchanged even when it
+ * breaks a rule: 1.0.x had no length limits, and one old value must not
+ * block saving the whole slider. Only new or edited values are checked.
  */
 final class SlideValidator {
 
@@ -25,13 +30,19 @@ final class SlideValidator {
 	public const MAX_SLIDES = 100;
 
 	/**
+	 * Fields whose stored value is accepted unchanged (free text and links).
+	 */
+	private const KEEP_STORED = [ 'title', 'headline', 'subheadline', 'description', 'link_url', 'button_text', 'image_alt' ];
+
+	/**
 	 * Validate the list.
 	 *
 	 * @param mixed                             $slides Submitted slides.
 	 * @param array<string, array<int, string>> $errors Field errors, appended to.
+	 * @param array<int, array<string, mixed>>  $stored Slides stored now (on update).
 	 * @return array<int, array<string, mixed>> Accepted slides (defaults filled in).
 	 */
-	public static function validate( $slides, array &$errors ): array {
+	public static function validate( $slides, array &$errors, array $stored = [] ): array {
 		if ( ! is_array( $slides ) || array_values( $slides ) !== $slides ) {
 			$errors['slides'][] = __( 'Must be a list of slides.', 'lw-slider' );
 			return [];
@@ -51,7 +62,7 @@ final class SlideValidator {
 				continue;
 			}
 
-			$clean[] = self::slide( $slide, 'slides.' . $index . '.', $errors );
+			$clean[] = self::slide( $slide, 'slides.' . $index . '.', $errors, $stored );
 		}
 
 		return $clean;
@@ -63,9 +74,10 @@ final class SlideValidator {
 	 * @param array<array-key, mixed>           $slide  Submitted slide.
 	 * @param string                            $prefix Error key prefix.
 	 * @param array<string, array<int, string>> $errors Field errors, appended to.
+	 * @param array<int, array<string, mixed>>  $stored Slides stored now.
 	 * @return array<string, mixed>
 	 */
-	private static function slide( array $slide, string $prefix, array &$errors ): array {
+	private static function slide( array $slide, string $prefix, array &$errors, array $stored ): array {
 		$clean = Defaults::slide();
 
 		foreach ( $slide as $key => $value ) {
@@ -74,12 +86,33 @@ final class SlideValidator {
 				? self::field( $key, $value, $clean[ $key ] )
 				: __( 'Unknown field.', 'lw-slider' );
 
+			if ( null !== $error && self::is_stored( $key, $value, $stored ) ) {
+				$clean[ $key ] = $value;
+				$error         = null;
+			}
+
 			if ( null !== $error ) {
 				$errors[ $prefix . $key ][] = $error;
 			}
 		}
 
 		return $clean;
+	}
+
+	/**
+	 * Whether a text or link value is already stored on one of the slides.
+	 *
+	 * @param string                           $key    Field.
+	 * @param mixed                            $value  Submitted value.
+	 * @param array<int, array<string, mixed>> $stored Slides stored now.
+	 * @return bool
+	 */
+	private static function is_stored( string $key, $value, array $stored ): bool {
+		if ( ! is_string( $value ) || '' === $value || ! in_array( $key, self::KEEP_STORED, true ) ) {
+			return false;
+		}
+
+		return in_array( $value, array_column( $stored, $key ), true );
 	}
 
 	/**

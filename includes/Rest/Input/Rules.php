@@ -129,7 +129,9 @@ final class Rules {
 	}
 
 	/**
-	 * A link: '', a web or mail/phone address, or a path on this site.
+	 * A link: '', a path on this site, or an address with one of the
+	 * protocols WordPress allows in links (wp_allowed_protocols(): http,
+	 * mailto, tel, sms, ftp, ...), as 1.0.x saved and the site prints them.
 	 *
 	 * @param mixed $value Submitted value.
 	 * @param mixed $clean Accepted (normalized) value.
@@ -143,7 +145,7 @@ final class Rules {
 		}
 
 		$value = trim( $value );
-		$url   = '' === $value ? '' : esc_url_raw( $value, [ 'http', 'https', 'mailto', 'tel' ] );
+		$url   = '' === $value ? '' : esc_url_raw( $value );
 
 		if ( '' !== $value && '' === $url ) {
 			return $error;

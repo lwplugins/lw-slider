@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace LightweightPlugins\Slider\Rest\Input;
 
+use LightweightPlugins\Slider\Data\SliderRepository;
 use LightweightPlugins\Slider\Rest\SliderPermissions;
 use WP_Post;
 
@@ -63,7 +64,8 @@ final class SliderInput {
 					$this->values['settings'] = SettingsValidator::validate( $value, $this->errors );
 					break;
 				case 'slides':
-					$this->values['slides'] = SlideValidator::validate( $value, $this->errors );
+					$stored                 = null !== $current ? SliderRepository::raw_slides( $current->ID ) : [];
+					$this->values['slides'] = SlideValidator::validate( $value, $this->errors, $stored );
 					break;
 				case 'modified':
 					$this->values['modified'] = is_string( $value ) ? $value : '';

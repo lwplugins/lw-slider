@@ -86,4 +86,31 @@ final class SliderInputTest extends MonkeyTestCase {
 		$this->assertSame( [], ( new SliderInput( [ 'status' => 'private' ], $current ) )->errors() );
 		$this->assertArrayHasKey( 'status', ( new SliderInput( [ 'status' => 'pending' ], $current ) )->errors() );
 	}
+
+	public function test_stored_legacy_links_and_long_texts_do_not_block_saving(): void {
+		$this->stub_meta_store();
+		$long    = str_repeat( 'x', 600 );
+		$far     = 'https://example.com/?q=' . str_repeat( 'a', 2100 );
+		$current = new WP_Post( [ 'ID' => 5 ] );
+
+		$this->meta[5]['_lw_slider_slides'] = [ [ 'headline' => $long, 'link_url' => $far ] ];
+
+		// Unchanged (and moved to another position): accepted as stored.
+		$input = new SliderInput( [ 'slides' => [ [ 'headline' => 'New' ], [ 'headline' => $long, 'link_url' => $far ] ] ], $current );
+		$this->assertSame( [], $input->errors() );
+		$this->assertSame( $long, $input->get( 'slides' )[1]['headline'] );
+		$this->assertSame( $far, $input->get( 'slides' )[1]['link_url'] );
+
+		// Edited, or new on create: checked.
+		$edited = new SliderInput( [ 'slides' => [ [ 'headline' => $long . 'y' ] ] ], $current );
+		$this->assertSame( [ 'slides.0.headline' ], array_keys( $edited->errors() ) );
+		$this->assertSame( [ 'slides.0.headline' ], array_keys( ( new SliderInput( [ 'slides' => [ [ 'headline' => $long ] ] ] ) )->errors() ) );
+	}
+
+	public function test_links_accept_the_protocols_wordpress_allows(): void {
+		$input = new SliderInput( [ 'slides' => [ [ 'link_url' => 'sms:+3612345' ], [ 'link_url' => 'ftp://example.com/f' ], [ 'link_url' => 'javascript:alert(1)' ] ] ] );
+
+		$this->assertSame( [ 'slides.2.link_url' ], array_keys( $input->errors() ) );
+		$this->assertSame( 'sms:+3612345', $input->get( 'slides' )[0]['link_url'] );
+	}
 }

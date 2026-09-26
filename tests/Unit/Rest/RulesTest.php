@@ -55,6 +55,8 @@ final class RulesTest extends MonkeyTestCase {
 		$this->assertNull( Rules::url( '/shop', $clean ) );
 		$this->assertNull( Rules::url( '', $clean ) );
 		$this->assertSame( '', $clean );
+		$this->assertNull( Rules::url( 'sms:+3612345', $clean ) );
+		$this->assertNull( Rules::url( 'fax:+3612345', $clean ) );
 		$this->assertNotNull( Rules::url( 'javascript:alert(1)', $clean ) );
 		$this->assertNotNull( Rules::url( [ 'x' ], $clean ) );
 	}
