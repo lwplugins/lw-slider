@@ -62,6 +62,7 @@ Splide.js — a lightweight, accessible slider library (~30KB).
 
 = 1.1.1 =
 * Change: the LW Plugins overview page is now a searchable table showing each LW plugin's status and version, with one-click activation for installed plugins; it always uses the newest version shipped by any active LW plugin.
+* Fix: LW Site Manager's MCP server now lists this plugin's abilities (they were only reachable through REST).
 
 = 1.1.0 =
 * New: New slider manager under LW Plugins > Sliders: a list with search, status filter, trash (with Undo) and duplicate, and an editor with Slides, Settings and Embed sections. Save with the button or Cmd/Ctrl+S; unsaved changes are kept and you are asked before leaving.
