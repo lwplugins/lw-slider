@@ -14,7 +14,6 @@ use LightweightPlugins\Slider\Admin\SliderColumns;
 use LightweightPlugins\Slider\Admin\SliderDuplicator;
 use LightweightPlugins\Slider\Admin\SliderMetaBox;
 use LightweightPlugins\Slider\Admin\SliderSaveHandler;
-use LightweightPlugins\Slider\Ajax\SlideHandler;
 use LightweightPlugins\Slider\Block\SliderBlock;
 use LightweightPlugins\Slider\Frontend\Assets;
 use LightweightPlugins\Slider\Frontend\Shortcode;
@@ -74,7 +73,6 @@ final class Plugin {
 		new SliderColumns();
 		new SliderDuplicator();
 		new SliderSaveHandler();
-		new SlideHandler();
 	}
 
 	/**

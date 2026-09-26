@@ -121,8 +121,6 @@ final class SliderMetaBox {
 			'lw-slider-admin',
 			'lwSliderAdmin',
 			array(
-				'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
-				'nonce'       => wp_create_nonce( 'lw_slider_admin' ),
 				'selectImage' => __( 'Select Image', 'lw-slider' ),
 				'useImage'    => __( 'Use this image', 'lw-slider' ),
 				'newSlide'    => __( 'New Slide', 'lw-slider' ),
