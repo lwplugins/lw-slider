@@ -31,11 +31,6 @@ final class AppPage {
 	private const HANDLE = 'lw-slider-admin-app';
 
 	/**
-	 * Documentation URL.
-	 */
-	private const DOCS_URL = 'https://github.com/lwplugins/lw-slider#readme';
-
-	/**
 	 * Hook suffix returned by add_submenu_page(). Assets are keyed on it:
 	 * WordPress derives its prefix from the translated parent menu title.
 	 *
@@ -115,7 +110,7 @@ final class AppPage {
 		return [
 			'version'    => LW_SLIDER_VERSION,
 			'namespace'  => AdminRoutes::NAMESPACE,
-			'docsUrl'    => self::DOCS_URL,
+			'docsUrl'    => self::docs_url(),
 			'canPublish' => SliderPermissions::can_publish(),
 			'defaults'   => [
 				'slide'    => Defaults::slide(),
@@ -169,5 +164,17 @@ final class AppPage {
 		}
 
 		echo '<div id="lw-slider-root" class="lw-slider-root"></div>';
+	}
+
+	/**
+	 * Documentation URL: the plugin's page on docs.lwplugins.com, in Hungarian
+	 * for Hungarian admin users and in English otherwise.
+	 *
+	 * @return string
+	 */
+	public static function docs_url(): string {
+		$lang = str_starts_with( get_user_locale(), 'hu' ) ? 'hu' : 'en';
+
+		return 'https://docs.lwplugins.com/' . $lang . '/plugins/lw-slider';
 	}
 }

@@ -3,7 +3,7 @@ Contributors: lwplugins
 Tags: slider, carousel, responsive, lightweight
 Requires at least: 6.6
 Tested up to: 7.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,9 @@ Only published sliders without a password are shown. Check the slider's status u
 Splide.js — a lightweight, accessible slider library (~30KB).
 
 == Changelog ==
+
+= 1.1.2 =
+* Fix: The admin Docs link now opens the plugin's page on docs.lwplugins.com, in Hungarian for Hungarian admin users.
 
 = 1.1.1 =
 * Change: the LW Plugins overview page is now a searchable table showing each LW plugin's status and version, with one-click activation for installed plugins; it always uses the newest version shipped by any active LW plugin.
